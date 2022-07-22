@@ -218,9 +218,10 @@ int main() {
     customer.open("customer.txt", ios::in); // this ios::in allows the input (read operations) from a stream
     if (customer.is_open()) //checking if file is open 
     {
-        string StoreCustomerInfo; //this is putting the function into strings im pretty sure
+        string StoreCustomerInfo; //this is putting the function into strings im pretty sure (NOPE LOL)
         while(getline(customer,StoreCustomerInfo)) //this is reading data from the file object and putting it into a string
         cout << StoreCustomerInfo << endl; // printing the data of the string
+        
     }
     customer.close(); // closing the file
 
