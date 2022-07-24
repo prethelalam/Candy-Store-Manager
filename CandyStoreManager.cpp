@@ -39,12 +39,13 @@ using namespace std;
 // 4) Verify that your code "overwrites" itself in the "customers.txt" file - by this I mean if you call the
 // StoreCustomerInfo with information about the customer, then call it again with DIFFERENT information about the
 // customer, the different information should overwrite the old information
+//done!
 
 // 5) Push your changes to Github!
+//done!
 
 
-
-// IsLactoseIntolerant) and write it to a file named "customer.txt" with each field being on a new line.
+// StoreCustomerInfo should take in the customer's information (Name, Sex, Weight, Age, Money spent so far for candies, IsLactoseIntolerant) and write it to a file named "customer.txt" with each field being on a new line.
 // The file should look this afterwards:
 // <NAME> (a string)
 // <SEX> (a char: 'M', 'F', or 'O')
@@ -60,18 +61,28 @@ using namespace std;
 // 45
 // 23.41
 // false
-void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money) {
+
+void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseTolerant) {
     fstream customer; //the fstream data type has a property of reading, writing, and working with files. 
     customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
     if (customer.is_open()) 
     {
     customer << "Inside Store Customer Info.\n";
-    customer << "The name you provided is: " << Name << endl;
-    customer << "The sex you provided is: " << Sex << endl;
-    customer << "The Weight you provided is: " << Weight << endl;
-    customer << "The age you provided is: " << Age << endl;
-    customer << "The money you spent is: " << Money << endl;
-    
+    customer << "\n";
+    customer << Name << endl;
+    customer << Sex << endl;
+    customer << Weight << endl;
+    customer << Age << endl;
+    customer << Money << endl;
+
+    if (IsLactoseTolerant == true)
+    {
+        customer << "True" << endl; 
+    }
+    else
+    {
+        customer << "False" << endl;
+    }
     customer.close();
     }
 }
@@ -207,7 +218,7 @@ int main() {
     
 
 
-    StoreCustomerInfo("Prethel Alam", 'M', 156, 23, 100);
+    StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
 
 
 }

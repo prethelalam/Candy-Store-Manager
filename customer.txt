@@ -1,6 +1,8 @@
 Inside Store Customer Info.
-The name you provided is: Prethel Alam
-The sex you provided is: M
-The Weight you provided is: 156
-The age you provided is: 23
-The money you spent is: 100
+
+Prethel Alam
+M
+156.23
+23
+100
+False
