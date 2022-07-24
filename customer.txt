@@ -1,1 +1,6 @@
-Inside Store Customer Info.The name you provided is: The sex you provided is: The Weight you provided is: The age you provided is: The money you spent is: 
+Inside Store Customer Info.
+The name you provided is: Prethel Alam
+The sex you provided is: M
+The Weight you provided is: 156
+The age you provided is: 23
+The money you spent is: 100

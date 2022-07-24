@@ -34,6 +34,7 @@ using namespace std;
 
 // 3) In the StoreCustomerInfo function, write the customer information to a file called "customers.txt".
 // The "customers.txt" file should be in the same directory as your cpp code.
+//done!
 
 // 4) Verify that your code "overwrites" itself in the "customers.txt" file - by this I mean if you call the
 // StoreCustomerInfo with information about the customer, then call it again with DIFFERENT information about the
@@ -60,14 +61,19 @@ using namespace std;
 // 23.41
 // false
 void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money) {
-    cout << "Inside Store Customer Info.\n";
-    cout << "The name you provided is: " << Name << endl;
-    cout << "The sex you provided is: " << Sex << endl;
-    cout << "The Weight you provided is: " << Weight << endl;
-    cout << "The age you provided is: " << Age << endl;
-    cout << "The money you spent is: " << Money << endl;
-    return;
+    fstream customer; //the fstream data type has a property of reading, writing, and working with files. 
+    customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
+    if (customer.is_open()) 
+    {
+    customer << "Inside Store Customer Info.\n";
+    customer << "The name you provided is: " << Name << endl;
+    customer << "The sex you provided is: " << Sex << endl;
+    customer << "The Weight you provided is: " << Weight << endl;
+    customer << "The age you provided is: " << Age << endl;
+    customer << "The money you spent is: " << Money << endl;
     
+    customer.close();
+    }
 }
 
 void GiveMeAnInteger(int my_integer) { //functions allow you to do some small behaviors, this jsut shows how to pass information. so this my_integer is like a placeholder where you dont have to keep creating changing the info manually each time. you can even put pancakes, or dogs instead of my_integer
@@ -202,28 +208,6 @@ int main() {
 
 
     StoreCustomerInfo("Prethel Alam", 'M', 156, 23, 100);
-    fstream customer; //how to create the file
-    customer.open("customer.txt", ios::out); //this opens up a file to perform write operation using file object. ios::out means to allow output (write operations) to a stream
-    if (customer.is_open()) //checking to see if the file is open
-    {
-    customer << "Inside Store Customer Info."; 
-    customer << "The name you provided is: ";
-    customer << "The sex you provided is: ";
-    customer << "The Weight you provided is: ";
-    customer << "The age you provided is: ";
-    customer << "The money you spent is: ";
-    
-    customer.close(); // this closes the file
-    }
-    customer.open("customer.txt", ios::in); // this ios::in allows the input (read operations) from a stream
-    if (customer.is_open()) //checking if file is open 
-    {
-        string StoreCustomerInfo; //this is putting the function into strings im pretty sure (NOPE LOL)
-        while(getline(customer,StoreCustomerInfo)) //this is reading data from the file object and putting it into a string
-        cout << StoreCustomerInfo << endl; // printing the data of the string
-        
-    }
-    customer.close(); // closing the file
 
 
 }
