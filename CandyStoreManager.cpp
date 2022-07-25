@@ -62,6 +62,7 @@ using namespace std;
 // 23.41
 // false
 
+
 void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseTolerant) {
     fstream customer; //the fstream data type has a property of reading, writing, and working with files. 
     customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
@@ -85,6 +86,8 @@ void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, 
     }
     customer.close();
     }
+
+
 }
 
 void GiveMeAnInteger(int my_integer) { //functions allow you to do some small behaviors, this jsut shows how to pass information. so this my_integer is like a placeholder where you dont have to keep creating changing the info manually each time. you can even put pancakes, or dogs instead of my_integer
@@ -118,8 +121,20 @@ int Add10ToWeight (int myWeight) {
 
 /* Part 2 - Reading customer info from the file */
 
-string GetCustomerName() {
-    return "";
+string GetCustomerName(string Name) {
+    fstream customer;
+    customer.open("customer.txt", ios::in); // this is opening the file
+    if (customer.is_open()){
+        customer >> Name; //this is a pipe that allows data to be read (not 100% sure though)
+            cout << "The customers name is " << Name << endl; //having trouble reading name from customer.txt file
+        }
+    
+    else 
+    {
+        cout << "Error: File not found.\n";
+    }
+    customer.close();
+    return "Name";
 }
 
 char GetCustomerSex() {
@@ -219,6 +234,8 @@ int main() {
 
 
     StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
+
+   GetCustomerName("Name"); // my code on line 125 is reading this but not data from the customer.txt file
 
 
 }
