@@ -121,43 +121,124 @@ int Add10ToWeight (int myWeight) {
 
 /* Part 2 - Reading customer info from the file */
 
-string GetCustomerName(string Name) {
+string GetCustomerName() {
     fstream customer;
     customer.open("customer.txt", ios::in); // this is opening the file
     if (customer.is_open()){
         string Name;
-        getline(customer, Name, ' ');// having trouble using getline 
-        customer.ignore (22, '\n'); //tried ignoring characters before the name but then only my first name will appear
-        customer >> Name;
-        cout << "The customers name is" << Name << endl; //having trouble reading name. program keeps stopping at spaces 
-
-        }
-    
+        getline(customer, Name);
+        getline(customer, Name);
+        getline(customer, Name);
+        cout << "The customers name is " << Name << endl; 
+    }
     else 
     {
         cout << "Error: File not found.\n";
     }
     customer.close();
-    return "Name";
+    return " ";
 }
 
 char GetCustomerSex() {
+    fstream customer;
+    customer.open("customer.txt", ios::in);
+    if (customer.is_open()){
+        string Sex;
+        getline (customer, Sex);
+        getline (customer, Sex);
+        getline (customer, Sex);
+        getline (customer, Sex);
+        cout << "The customers sex is " << Sex << endl;
+    }
+    else 
+    {
+        cout << "Error: file not found.\n";
+    }
+    customer.close();
     return ' ';
 }
 
 float GetCustomerWeight() {
+    fstream customer;
+    customer.open("customer.txt",ios::in);
+    if (customer.is_open()){
+        string Weight;
+        getline (customer, Weight);
+        getline (customer, Weight);
+        getline (customer, Weight);
+        getline (customer, Weight);
+        getline (customer, Weight);
+        cout << "The customers weight is " << Weight << endl;
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    customer.close();
     return 0.0;
 }
 
 int GetCustomerAge() {
+    fstream customer;
+    customer.open("customer.txt",ios::in);
+    if (customer.is_open()){
+        string Age;
+        getline (customer, Age);
+        getline (customer, Age);
+        getline (customer, Age);
+        getline (customer, Age);
+        getline (customer, Age);
+        getline (customer, Age);
+        cout << "The customers age is " << Age << endl;
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    customer.close();
     return 0;
 }
 
-double GetMoneySpentByCustomer() {
+int GetMoneySpentByCustomer() {
+    fstream customer;
+    customer.open("customer.txt", ios::in);
+    if (customer.is_open()){
+        string MoneySpentByCustomer;
+        getline (customer, MoneySpentByCustomer);
+        getline (customer, MoneySpentByCustomer);
+        getline (customer, MoneySpentByCustomer);
+        getline (customer, MoneySpentByCustomer);
+        getline (customer, MoneySpentByCustomer);
+        getline (customer, MoneySpentByCustomer);
+        getline (customer, MoneySpentByCustomer);
+        cout << "The customer spent $" << MoneySpentByCustomer << endl;
+    }
+    else 
+    {
+        cout << "Error: file not found.\n";
+    }
+    customer.close();
     return 0.0;
 }
 
 bool IsCustomerLactoseIntolerant() {
+    fstream customer;
+    customer.open("customer.txt", ios::in);
+    if (customer.is_open()){
+        string IsCustomerLactoseIntolerant;
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        getline(customer,IsCustomerLactoseIntolerant);
+        cout << "Is the customer lactose intolerant? True is yes, False is no: " << IsCustomerLactoseIntolerant << endl;
+    }
+    else{
+        cout << "Error: file not found.\n";
+    }
     return false;
 }
 
@@ -239,8 +320,16 @@ int main() {
 
     StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
 
-    GetCustomerName("Name"); // my code on line 125 is reading this but not data from the customer.txt file
+    GetCustomerName(); 
+
+    GetCustomerSex();
+
+    GetCustomerWeight();
+
+    GetCustomerAge();
+
+    GetMoneySpentByCustomer();
+
+    IsCustomerLactoseIntolerant();
     
-
-
 }
