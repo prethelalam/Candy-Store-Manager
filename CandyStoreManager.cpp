@@ -68,7 +68,7 @@ void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, 
     customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
     if (customer.is_open()) 
     {
-    customer << "Inside Store Customer Info.\n";
+    customer << "Inside Store Customer Info.: \n";
     customer << "\n";
     customer << Name << endl;
     customer << Sex << endl;
@@ -125,8 +125,12 @@ string GetCustomerName(string Name) {
     fstream customer;
     customer.open("customer.txt", ios::in); // this is opening the file
     if (customer.is_open()){
-        customer >> Name; //this is a pipe that allows data to be read (not 100% sure though)
-            cout << "The customers name is " << Name << endl; //having trouble reading name from customer.txt file
+        string Name;
+        getline(customer, Name, ' ');// having trouble using getline 
+        customer.ignore (22, '\n'); //tried ignoring characters before the name but then only my first name will appear
+        customer >> Name;
+        cout << "The customers name is" << Name << endl; //having trouble reading name. program keeps stopping at spaces 
+
         }
     
     else 
@@ -235,7 +239,8 @@ int main() {
 
     StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
 
-   GetCustomerName("Name"); // my code on line 125 is reading this but not data from the customer.txt file
+    GetCustomerName("Name"); // my code on line 125 is reading this but not data from the customer.txt file
+    
 
 
 }
