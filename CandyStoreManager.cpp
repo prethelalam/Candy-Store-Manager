@@ -191,10 +191,9 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, int Money,
     int option;
     cin >> option;
     if (option == 1){
-    fstream customer;
-    customer.open("customer.txt",ios::out);
-    if (customer.is_open()){
-    customer << "Inside Store Customer Info.: \n";
+    
+    StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseIntolerant);
+    /*customer << "Inside Store Customer Info.: \n";
     customer << "\n";
     customer << "The customers name is " << Name << endl;
     customer << "The customers sex is " << Sex << endl;
@@ -214,7 +213,7 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, int Money,
     customer.close();
     }
     
-    }
+    } */
     return;
     }
 /* ------------------------------------------- */
@@ -309,6 +308,14 @@ int main() {
     
     StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
     
+    /*string Name = "Prethel Alam";
+char Sex = 'M';
+float weight = 134.32;
+int Age = 45;
+etc..
+void UpdateCustomerInfo(Name, Sex, weight, Age){}
+UpdateCustomerInfo(Name, Sex, weight);
+*/
     UpdateCustomerInfo("Zeus Alam", 'M', 20, 3, 89, true);
 
     GetCustomerName(); 
