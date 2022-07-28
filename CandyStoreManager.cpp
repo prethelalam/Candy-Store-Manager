@@ -306,16 +306,16 @@ void UpdateDietInventory() {
 
 int main() {
     
-    StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
+    string name = "Prethal Alam";
+    char sex = 'M';
+    float weight = 156.23;
+    int age = 23;
+    int money = 100;
+    bool isLactoseIntolerant = false;
     
-    /*string Name = "Prethel Alam";
-char Sex = 'M';
-float weight = 134.32;
-int Age = 45;
-etc..
-void UpdateCustomerInfo(Name, Sex, weight, Age){}
-UpdateCustomerInfo(Name, Sex, weight);
-*/
+    // How would you call StoreCustomerInfo using the variables instead of the literals?
+    StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
+
     UpdateCustomerInfo("Zeus Alam", 'M', 20, 3, 89, true);
 
     GetCustomerName(); 
