@@ -6,20 +6,21 @@ using namespace std;
 
 //PROJECT HAS NOT BEEN COMPLETED YET
 
-void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseTolerant) {
+void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseIntolerant) {
     fstream customer; //the fstream data type has a property of reading, writing, and working with files. 
     customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
     if (customer.is_open()) 
     {
     customer << "Inside Store Customer Info.: \n";
     customer << "\n";
-    customer << Name << endl;
-    customer << Sex << endl;
-    customer << Weight << endl;
-    customer << Age << endl;
-    customer << Money << endl;
+    customer << "The customers name is " << Name << endl;
+    customer << "The customers sex is " << Sex << endl;
+    customer << "The customers weight is " << Weight << " pounds" << endl;
+    customer << "The customers age is " << Age << endl;
+    customer << "The customer spent $" << Money << endl;
+    customer << "Customer is lactose intolerant: " << endl;
 
-    if (IsLactoseTolerant == true)
+    if (IsLactoseIntolerant == true)
     {
         customer << "True" << endl; 
     }
@@ -42,7 +43,7 @@ string GetCustomerName() {
         getline(customer, Name);
         getline(customer, Name);
         getline(customer, Name);
-        cout << "The customers name is " << Name << endl; 
+        cout << Name << endl; 
     }
     else 
     {
@@ -61,7 +62,7 @@ char GetCustomerSex() {
         getline (customer, Sex);
         getline (customer, Sex);
         getline (customer, Sex);
-        cout << "The customers sex is " << Sex << endl;
+        cout << Sex << endl;
     }
     else 
     {
@@ -81,7 +82,7 @@ float GetCustomerWeight() {
         getline (customer, Weight);
         getline (customer, Weight);
         getline (customer, Weight);
-        cout << "The customers weight is " << Weight << endl;
+        cout << Weight << endl;
     }
     else
     {
@@ -102,7 +103,7 @@ int GetCustomerAge() {
         getline (customer, Age);
         getline (customer, Age);
         getline (customer, Age);
-        cout << "The customers age is " << Age << endl;
+        cout << Age << endl;
     }
     else
     {
@@ -124,7 +125,7 @@ int GetMoneySpentByCustomer() {
         getline (customer, MoneySpentByCustomer);
         getline (customer, MoneySpentByCustomer);
         getline (customer, MoneySpentByCustomer);
-        cout << "The customer spent $" << MoneySpentByCustomer << endl;
+        cout << MoneySpentByCustomer << endl;
     }
     else 
     {
@@ -134,20 +135,21 @@ int GetMoneySpentByCustomer() {
     return 0.0;
 }
 
-bool IsCustomerLactoseIntolerant() {
+bool IsLactoseIntolerant() {
     fstream customer;
     customer.open("customer.txt", ios::in);
     if (customer.is_open()){
-        string IsCustomerLactoseIntolerant;
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        getline(customer,IsCustomerLactoseIntolerant);
-        cout << "Is the customer lactose intolerant? True is yes, False is no: " << IsCustomerLactoseIntolerant << endl;
+        string IsLactoseIntolerant;
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        getline(customer,IsLactoseIntolerant);
+        cout << "Customer is lactose intorelant: " << IsLactoseIntolerant << endl;
     }
     else{
         cout << "Error: file not found.\n";
@@ -228,6 +230,17 @@ void UpdateDietInventory() {
 int main() {
     
     StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
+    cout << "Do you want to update the customers information? If yes, enter 1.\n";
+    int option;
+    cin >> option;
+    if (option == 1){
+    fstream customer;
+    customer.open("customer.txt",ios::out);
+    if (customer.is_open()){
+    //getline(customer, Name, l);
+    StoreCustomerInfo("Zeus Alam", 'M', 20, 3, 89, true); 
+    }
+    }
 
     GetCustomerName(); 
 
@@ -239,7 +252,7 @@ int main() {
 
     GetMoneySpentByCustomer();
 
-    IsCustomerLactoseIntolerant();
+    IsLactoseIntolerant();
 
 //part 4
     DisplayMenuForCustomer();

@@ -1,8 +1,9 @@
 Inside Store Customer Info.: 
 
-Prethel Alam
-M
-156.23
-23
-100
-False
+The customers name is Zeus Alam
+The customers sex is M
+The customers weight is 20 pounds
+The customers age is 3
+The customer spent $89
+Customer is lactose intolerant: 
+True
