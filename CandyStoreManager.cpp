@@ -185,9 +185,38 @@ double GetCostOfStorage() {
 
 // Implement the functionality where, if you need to update a customer's information, then you should be able to call this UpdateCustomerInfo function
 // and it should update the customer.txt file. You'll need to add parameters to the function.
-void UpdateCustomerInfo() {
+
+void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseIntolerant) {
+    cout << "Do you want to update the customers information? If yes, enter 1.\n";
+    int option;
+    cin >> option;
+    if (option == 1){
+    fstream customer;
+    customer.open("customer.txt",ios::out);
+    if (customer.is_open()){
+    customer << "Inside Store Customer Info.: \n";
+    customer << "\n";
+    customer << "The customers name is " << Name << endl;
+    customer << "The customers sex is " << Sex << endl;
+    customer << "The customers weight is " << Weight << " pounds" << endl;
+    customer << "The customers age is " << Age << endl;
+    customer << "The customer spent $" << Money << endl;
+    customer << "Customer is lactose intolerant: " << endl;
+
+    if (IsLactoseIntolerant == true)
+    {
+        customer << "True" << endl; 
+    }
+    else
+    {
+        customer << "False" << endl;
+    }
+    customer.close();
+    }
+    
+    }
     return;
-}
+    }
 /* ------------------------------------------- */
 
 /* Part 4 - Displaying and taking in the customer's order */
@@ -279,17 +308,8 @@ void UpdateDietInventory() {
 int main() {
     
     StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
-    cout << "Do you want to update the customers information? If yes, enter 1.\n";
-    int option;
-    cin >> option;
-    if (option == 1){
-    fstream customer;
-    customer.open("customer.txt",ios::out);
-    if (customer.is_open()){
-    //getline(customer, Name, l);
-    StoreCustomerInfo("Zeus Alam", 'M', 20, 3, 89, true); 
-    }
-    }
+    
+    UpdateCustomerInfo("Zeus Alam", 'M', 20, 3, 89, true);
 
     GetCustomerName(); 
 
