@@ -173,20 +173,6 @@ void UpdateCustomerInfo() {
 /* Part 4 - Displaying and taking in the customer's order */
 
 void DisplayMenuForCustomer() { 
-    int option;
-
-    cout << "Select what you would like to do. \n";
-    cout << "Add customer information, enter 1: \n";
-    cout << "Read customer information, enter 2: \n";
-    cout << "Update customer information, enter 3: \n";
-    cin >> option;
-
-    if (option==1)
-    {
-        cout << "Enter customer information.\n";
-        cin >> option;
-    }
-    
     return;
 }
 
