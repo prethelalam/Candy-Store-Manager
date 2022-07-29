@@ -191,31 +191,10 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, int Money,
     int option;
     cin >> option;
     if (option == 1){
-    
-    StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseIntolerant);
-    /*customer << "Inside Store Customer Info.: \n";
-    customer << "\n";
-    customer << "The customers name is " << Name << endl;
-    customer << "The customers sex is " << Sex << endl;
-    customer << "The customers weight is " << Weight << " pounds" << endl;
-    customer << "The customers age is " << Age << endl;
-    customer << "The customer spent $" << Money << endl;
-    customer << "Customer is lactose intolerant: " << endl;
-
-    if (IsLactoseIntolerant == true)
-    {
-        customer << "True" << endl; 
-    }
-    else
-    {
-        customer << "False" << endl;
-    }
-    customer.close();
-    }
-    
-    } */
+    StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
     return;
     }
+}
 /* ------------------------------------------- */
 
 /* Part 4 - Displaying and taking in the customer's order */
@@ -306,17 +285,19 @@ void UpdateDietInventory() {
 
 int main() {
     
-    string name = "Prethal Alam";
+/*  string name = "Prethel Alam";
     char sex = 'M';
     float weight = 156.23;
     int age = 23;
     int money = 100;
     bool isLactoseIntolerant = false;
-    
-    // How would you call StoreCustomerInfo using the variables instead of the literals?
-    StoreCustomerInfo("Prethel Alam", 'M', 156.23, 23, 100, false);
 
-    UpdateCustomerInfo("Zeus Alam", 'M', 20, 3, 89, true);
+    UpdateCustomerInfo(name, sex, weight, age, money, isLactoseIntolerant); */
+    
+    // How would you call StoreCustomerInfo using the variables instead of the literals? 
+    StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100, false);
+
+    UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89, true);
 
     GetCustomerName(); 
 
