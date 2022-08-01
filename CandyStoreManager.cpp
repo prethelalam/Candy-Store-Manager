@@ -6,7 +6,7 @@ using namespace std;
 
 //PROJECT HAS NOT BEEN COMPLETED YET
 
-void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseIntolerant) {
+void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, double Money, bool IsLactoseIntolerant) {
     fstream customer; //the fstream data type has a property of reading, writing, and working with files. 
     customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
     if (customer.is_open()) 
@@ -55,7 +55,7 @@ string GetCustomerName() {
         cout << "Error: File not found.\n";
     }
     customer.close();
-    return " ";
+    return string();
 }
 
 // Grab the customer's sex in the customer.txt file and return it as a char
@@ -75,7 +75,7 @@ char GetCustomerSex() {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return ' ';
+    return char();
 }
 
 // Grab the customer's weight in the customer.txt file and return it as a float.
@@ -96,7 +96,7 @@ float GetCustomerWeight() {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return 0.0;
+    return float();
 }
 
 // Grab the Customer's age from the customer.txt file and return it as an int.
@@ -118,11 +118,11 @@ int GetCustomerAge() {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return 0;
+    return int();
 }
 
 // Grab the amount of money the customer has spent in the customer.txt file and return it as a float.
-int GetMoneySpentByCustomer() {
+double GetMoneySpentByCustomer() {
     fstream customer;
     customer.open("customer.txt", ios::in);
     if (customer.is_open()){
@@ -141,7 +141,7 @@ int GetMoneySpentByCustomer() {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return 0.0;
+    return double();
 }
 
 // Grab whether or not the customer is lactose intolerant from the customer.txt file and return it as a bool.
@@ -164,7 +164,7 @@ bool IsLactoseIntolerant() {
     else{
         cout << "Error: file not found.\n";
     }
-    return false;
+    return bool();
 }
 
 // The cost of storage is a function that mimics how much storage it would take to save all the customer's information. 
@@ -176,6 +176,19 @@ bool IsLactoseIntolerant() {
 // variables. Then finally, compute the "cost of storage" by computing the expression: <total number of bytes> * <byte multiplier> and return it.
 // HINT: the hardest part about this will be the string. if you can't figure it out, come to me for help.
 double GetCostOfStorage() {
+    double ByteMultiplier = 2.5;
+    string name = GetCustomerName();
+    char sex = GetCustomerSex();
+    float weight = GetCustomerWeight();
+    int age = GetCustomerAge();
+    double money = GetMoneySpentByCustomer();
+    bool intolerant = IsLactoseIntolerant();
+    double TotalNumberOfBytes;
+
+    TotalNumberOfBytes = sizeof(string) + sizeof(char) + sizeof (float) + sizeof(int) + sizeof(double) + sizeof(bool);
+
+    cout << "The cost of storage is " << TotalNumberOfBytes * ByteMultiplier << " bytes" << endl;
+
     return 0.0;
 }
 
@@ -186,12 +199,13 @@ double GetCostOfStorage() {
 // Implement the functionality where, if you need to update a customer's information, then you should be able to call this UpdateCustomerInfo function
 // and it should update the customer.txt file. You'll need to add parameters to the function.
 
-void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, int Money, bool IsLactoseIntolerant) {
-    cout << "Do you want to update the customers information? If yes, enter 1.\n";
-    int option;
+void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Money, bool IsLactoseIntolerant) {
+    cout << "Do you want to update the customers information? If yes, enter y.\n";
+    char option;
     cin >> option;
-    if (option == 1){
+    if (option == 'y'){
     StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
+
     return;
     }
 }
@@ -209,16 +223,32 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, int Money,
 // Then, you're going to ask what candy the customer chooses and how many of the candy they want. Then, you're going to update the "MoneySpentOnCandies"
 // field -- use the UpdateCustomerInfo function!
 // Hello! Welcome to WorryFree Candee! The CandyShop where you don't have to worry about how much you're eating candy because we'll handle that for you!
+
+
 void DisplayMenuForCustomer() {
-    
+    int Spent;
+    cin >> Spent;
+    if (Spent <=25){
+        DisplayNormalMenu();
+    }
+    else
+    {
+        DisplayDietMenu();
+    }
     return;
 }
 
 void DisplayNormalMenu() {
+    cout << "Sour patch kids\n";
+    cout << "Sour skittles\n";
+    cout << "Sour patch straws\n";
     return;
 }
 
 void DisplayDietMenu() {
+    cout << "King sized Cookies and Cream Hershey\n";
+    cout << "Buncha Crunch\n";
+    cout << "King sized gummy bears\n";
     return;
 }
 
@@ -295,9 +325,9 @@ int main() {
     UpdateCustomerInfo(name, sex, weight, age, money, isLactoseIntolerant); */
     
     // How would you call StoreCustomerInfo using the variables instead of the literals? 
-    StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100, false);
+    StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100.23, false);
 
-    UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89, true);
+    UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
 
     GetCustomerName(); 
 
@@ -311,7 +341,14 @@ int main() {
 
     IsLactoseIntolerant();
 
+    GetCostOfStorage();
+
 //part 4
+    cout << "**********************************MENU**********************************\n";
+
     DisplayMenuForCustomer();
     
+    DisplayNormalMenu();
+
+    DisplayDietMenu();
 }
