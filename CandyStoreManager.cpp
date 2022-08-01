@@ -187,7 +187,9 @@ double GetCostOfStorage() {
 
     TotalNumberOfBytes = sizeof(string) + sizeof(char) + sizeof (float) + sizeof(int) + sizeof(double) + sizeof(bool);
 
+    cout << "\n";
     cout << "The cost of storage is " << TotalNumberOfBytes * ByteMultiplier << " bytes" << endl;
+    cout << "\n";
 
     return 0.0;
 }
@@ -203,7 +205,9 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
     cout << "Do you want to update the customers information? If yes, enter y.\n";
     char option;
     cin >> option;
-    if (option == 'y'){
+        if (option == 'y')
+    {
+    cout << "\n";
     StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
 
     return;
@@ -226,33 +230,39 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
 
 
 void DisplayMenuForCustomer() {
-    int Spent;
-    cin >> Spent;
-    if (Spent <=25){
-        DisplayNormalMenu();
-    }
-    else
-    {
-        DisplayDietMenu();
-    }
+    //orignially was trying to call displayNormalMenu and DisplayDietMenu function here but it didn't work so i created an if statement in int main
     return;
 }
 
 void DisplayNormalMenu() {
-    cout << "Sour patch kids\n";
-    cout << "Sour skittles\n";
-    cout << "Sour patch straws\n";
+    cout << "Sour patch kids - $7\n";
+    cout << "Sour skittles - $8\n";
+    cout << "Sour patch straws - $9\n";
+    cout << "\n";
     return;
 }
 
 void DisplayDietMenu() {
-    cout << "King sized Cookies and Cream Hershey\n";
-    cout << "Buncha Crunch\n";
-    cout << "King sized gummy bears\n";
+    cout << "King sized Cookies and Cream Hershey - $10\n";
+    cout << "Buncha Crunch - $11\n";
+    cout << "King sized gummy bears- $12\n";
+    cout << "\n";
     return;
 }
 
 void TakeCustomerOrder() {
+    int Spent;
+    cout << "What would you like to purchase?\n";
+    if (Spent <= 25)
+    {
+        cout << "\n";
+        DisplayNormalMenu();
+    }
+    else 
+    {
+        cout << "\n";
+        DisplayDietMenu(); //this menu won't appear for some reason
+    }
     return;
 }
 
@@ -325,10 +335,14 @@ int main() {
     UpdateCustomerInfo(name, sex, weight, age, money, isLactoseIntolerant); */
     
     // How would you call StoreCustomerInfo using the variables instead of the literals? 
+
+    //Part 1
     StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100.23, false);
 
+    //Part 3
     UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
 
+    //Part 2
     GetCustomerName(); 
 
     GetCustomerSex();
@@ -343,12 +357,30 @@ int main() {
 
     GetCostOfStorage();
 
-//part 4
-    cout << "**********************************MENU**********************************\n";
-
-    DisplayMenuForCustomer();
+    //Part 4
+    DisplayMenuForCustomer();{
+        int Spent;
+        cout << "************Customer Menu************\n";
+        cout << "How much money are you spending on candy?\n";
+        cin >> Spent;
+        if (Spent <=25)
+    {
+        cout << "\n";
+        cout << "Since you would like to spend less than $25. Here is the Normal Menu is below: \n";
+        cout << "\n";
+        DisplayNormalMenu();
+    }
+    else
+    {
+        cout << "\n";
+        cout << "Since you would like to spend more than $25. Here is the Diet Menu is below: \n";
+        cout << "\n";
+        DisplayDietMenu(); 
+    }
+    }
     
-    DisplayNormalMenu();
+    TakeCustomerOrder();
+    
 
-    DisplayDietMenu();
+    
 }
