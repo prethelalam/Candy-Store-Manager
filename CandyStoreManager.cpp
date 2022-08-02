@@ -31,6 +31,7 @@ void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, double Mone
     customer.close();
     }
 }
+
 /* ------------------------------------------- */
 
 /* Part 2 - Reading customer info from the file */
@@ -42,13 +43,13 @@ void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, double Mone
 // Grab the customer name in the customer.txt file and return it as a string.
 string GetCustomerName() {
     fstream customer;
+    string Name;
     customer.open("customer.txt", ios::in); // this is opening the file
     if (customer.is_open()){
-        string Name;
         getline(customer, Name);
         getline(customer, Name);
         getline(customer, Name);
-        cout << Name << endl; 
+        cout << Name << endl;
     }
     else 
     {
@@ -57,7 +58,6 @@ string GetCustomerName() {
     customer.close();
     return string();
 }
-
 // Grab the customer's sex in the customer.txt file and return it as a char
 char GetCustomerSex() {
     fstream customer;
@@ -164,8 +164,11 @@ bool IsLactoseIntolerant() {
     else{
         cout << "Error: file not found.\n";
     }
+    customer.close();
     return bool();
 }
+
+
 
 // The cost of storage is a function that mimics how much storage it would take to save all the customer's information. 
 // This storage is determined by the data type it takes to store the customer's information in your program. Specifically,
@@ -176,16 +179,15 @@ bool IsLactoseIntolerant() {
 // variables. Then finally, compute the "cost of storage" by computing the expression: <total number of bytes> * <byte multiplier> and return it.
 // HINT: the hardest part about this will be the string. if you can't figure it out, come to me for help.
 double GetCostOfStorage() {
-    double ByteMultiplier = 2.5;
+    double ByteMultiplier = 2.5, TotalNumberOfBytes;
     string name = GetCustomerName();
     char sex = GetCustomerSex();
     float weight = GetCustomerWeight();
     int age = GetCustomerAge();
     double money = GetMoneySpentByCustomer();
     bool intolerant = IsLactoseIntolerant();
-    double TotalNumberOfBytes;
 
-    TotalNumberOfBytes = sizeof(string) + sizeof(char) + sizeof (float) + sizeof(int) + sizeof(double) + sizeof(bool);
+    TotalNumberOfBytes = sizeof(string) + sizeof(char) + sizeof(float) + sizeof(int) + sizeof(double) + sizeof(bool);
 
     cout << "\n";
     cout << "The cost of storage is " << TotalNumberOfBytes * ByteMultiplier << " bytes" << endl;
@@ -228,44 +230,88 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
 // field -- use the UpdateCustomerInfo function!
 // Hello! Welcome to WorryFree Candee! The CandyShop where you don't have to worry about how much you're eating candy because we'll handle that for you!
 
-
-void DisplayMenuForCustomer() {
-    //orignially was trying to call displayNormalMenu and DisplayDietMenu function here but it didn't work so i created an if statement in int main
-    return;
-}
-
 void DisplayNormalMenu() {
-    cout << "Sour patch kids - $7\n";
-    cout << "Sour skittles - $8\n";
-    cout << "Sour patch straws - $9\n";
-    cout << "\n";
+    int Spent;
+        cin >> Spent;
+    if (Spent <=25)
+    {
+        cout << "\n";
+        cout << "Since you would like to spend less than $25. Here is the Normal Menu is below: \n";
+        cout << "\n";
+        cout << "1. Sour patch kids - $7\n";
+        cout << "2. Sour skittles - $8\n";
+        cout << "3. Sour patch straws - $9\n";
+        cout << "\n";
+    }
     return;
 }
 
 void DisplayDietMenu() {
-    cout << "King sized Cookies and Cream Hershey - $10\n";
-    cout << "Buncha Crunch - $11\n";
-    cout << "King sized gummy bears- $12\n";
+    int Spent;
+    if (Spent >= 25)
+    {
+    cout << "Since you would like to spend more than $25. Here is the Diet Menu below:\n";
     cout << "\n";
+    cout << "4. King sized Cookies and Cream Hershey - $10\n";
+    cout << "5. Buncha Crunch - $11\n";
+    cout << "6. King sized gummy bears- $12\n";
+    cout << "\n";
+    }
     return;
 }
+
+void DisplayMenuForCustomer() {
+    
+    return;
+    }
+    
 
 void TakeCustomerOrder() {
     int Spent;
-    cout << "What would you like to purchase?\n";
+    int option;
+    char n;
+    fstream order;
     if (Spent <= 25)
     {
         cout << "\n";
-        DisplayNormalMenu();
-    }
-    else 
+        cout << "Please select the corresponding number of the candy you would like to buy.\n";
+        cin >> option;
+        if (option == 1)
+        {
+            cout << "You have chosen to purchase Sour Patch Kids. What else would you like to purchase?\n";
+        order.open("order.txt", ios::out);
+        if (order.is_open()){
+            order << "Your order is stated below:\n";
+            order << "\n";
+            order << "Sour Patch Kids\n";
+            order.close();
+            cin >> option;
+        }
+
+        }
+
+        if (option == 2) //can't select this option first, if i do then i can't select option 1
+        {
+            cout << "You have chosen to purchase Sour Skittles. What else would you like to purchase?";
+            order.open("order.txt", ios::out);
+        if (order.is_open()){
+            order << "Your order is stated below:\n";
+            order << "\n";
+            order << "Sour Patch Kids\n";
+            order << "Sour Skittles\n";
+            order.close();
+        }
+        
+    
+    if (Spent >= 25) 
     {
         cout << "\n";
-        DisplayDietMenu(); //this menu won't appear for some reason
-    }
+        
+    } 
     return;
+    }
+    }
 }
-
 void ServeCustomerCandy() {
     return;
 }
@@ -358,26 +404,15 @@ int main() {
     GetCostOfStorage();
 
     //Part 4
-    DisplayMenuForCustomer();{
-        int Spent;
-        cout << "************Customer Menu************\n";
-        cout << "How much money are you spending on candy?\n";
-        cin >> Spent;
-        if (Spent <=25)
-    {
-        cout << "\n";
-        cout << "Since you would like to spend less than $25. Here is the Normal Menu is below: \n";
-        cout << "\n";
-        DisplayNormalMenu();
-    }
-    else
-    {
-        cout << "\n";
-        cout << "Since you would like to spend more than $25. Here is the Diet Menu is below: \n";
-        cout << "\n";
-        DisplayDietMenu(); 
-    }
-    }
+    cout << "************Customer Menu************\n";
+    cout << "How much money are you spending on candy?\n";
+
+    DisplayNormalMenu();
+
+    DisplayDietMenu();
+
+    DisplayMenuForCustomer();
+        
     
     TakeCustomerOrder();
     
