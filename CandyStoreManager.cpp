@@ -162,7 +162,6 @@ bool IsLactoseIntolerant() {
         getline(customer,IsLactoseIntolerant);
         getline(customer,IsLactoseIntolerant);
         getline(customer,IsLactoseIntolerant);
-        //lactoseIntolerant = boost::lexical_cast<bool>(IsLactoseIntolerant);
     }
     else{
         cout << "Error: file not found.\n";
