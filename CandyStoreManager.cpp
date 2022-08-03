@@ -49,21 +49,20 @@ string GetCustomerName() {
         getline(customer, Name);
         getline(customer, Name);
         getline(customer, Name);
-        cout << Name << endl;
     }
     else 
     {
         cout << "Error: File not found.\n";
     }
     customer.close();
-    return string();
+    return Name;
 }
 // Grab the customer's sex in the customer.txt file and return it as a char
 char GetCustomerSex() {
     fstream customer;
+    string Sex;
     customer.open("customer.txt", ios::in);
     if (customer.is_open()){
-        string Sex;
         getline (customer, Sex);
         getline (customer, Sex);
         getline (customer, Sex);
@@ -81,9 +80,9 @@ char GetCustomerSex() {
 // Grab the customer's weight in the customer.txt file and return it as a float.
 float GetCustomerWeight() {
     fstream customer;
+    string Weight;
     customer.open("customer.txt",ios::in);
     if (customer.is_open()){
-        string Weight;
         getline (customer, Weight);
         getline (customer, Weight);
         getline (customer, Weight);
@@ -102,9 +101,9 @@ float GetCustomerWeight() {
 // Grab the Customer's age from the customer.txt file and return it as an int.
 int GetCustomerAge() {
     fstream customer;
+    string Age;
     customer.open("customer.txt",ios::in);
     if (customer.is_open()){
-        string Age;
         getline (customer, Age);
         getline (customer, Age);
         getline (customer, Age);
@@ -384,12 +383,13 @@ int main() {
 
     //Part 1
     StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100.23, false);
-
+    
     //Part 3
     UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
 
     //Part 2
-    GetCustomerName(); 
+    string name = GetCustomerName(); // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased.. keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
+    cout << name << endl;
 
     GetCustomerSex();
 
@@ -402,7 +402,7 @@ int main() {
     IsLactoseIntolerant();
 
     GetCostOfStorage();
-
+/*
     //Part 4
     cout << "************Customer Menu************\n";
     cout << "How much money are you spending on candy?\n";
@@ -415,6 +415,7 @@ int main() {
         
     
     TakeCustomerOrder();
+    */
     
 
     
