@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 
+
 using namespace std;
 
 //PROJECT HAS NOT BEEN COMPLETED YET
@@ -13,12 +14,11 @@ void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, double Mone
     {
     customer << "Inside Store Customer Info.: \n";
     customer << "\n";
-    customer << "The customers name is " << Name << endl;
-    customer << "The customers sex is " << Sex << endl;
-    customer << "The customers weight is " << Weight << " pounds" << endl;
-    customer << "The customers age is " << Age << endl;
-    customer << "The customer spent $" << Money << endl;
-    customer << "Customer is lactose intolerant: " << endl;
+    customer << Name << endl;
+    customer << Sex << endl;
+    customer << Weight << endl;
+    customer << Age << endl;
+    customer << Money << endl;
 
     if (IsLactoseIntolerant == true)
     {
@@ -61,26 +61,28 @@ string GetCustomerName() {
 char GetCustomerSex() {
     fstream customer;
     string Sex;
+    char sex;
     customer.open("customer.txt", ios::in);
     if (customer.is_open()){
         getline (customer, Sex);
         getline (customer, Sex);
         getline (customer, Sex);
         getline (customer, Sex);
-        cout << Sex << endl;
+        sex = Sex[0];
     }
     else 
     {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return char();
+    return sex; //having issues converting Sex back into a char
 }
 
 // Grab the customer's weight in the customer.txt file and return it as a float.
 float GetCustomerWeight() {
     fstream customer;
     string Weight;
+    float weight; //defining w to be a float to be used later
     customer.open("customer.txt",ios::in);
     if (customer.is_open()){
         getline (customer, Weight);
@@ -88,20 +90,21 @@ float GetCustomerWeight() {
         getline (customer, Weight);
         getline (customer, Weight);
         getline (customer, Weight);
-        cout << Weight << endl;
+        weight = stof(Weight); //using stof to convert a string into a float
     }
     else
     {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return float();
+    return weight;
 }
 
 // Grab the Customer's age from the customer.txt file and return it as an int.
 int GetCustomerAge() {
     fstream customer;
     string Age;
+    int age;
     customer.open("customer.txt",ios::in);
     if (customer.is_open()){
         getline (customer, Age);
@@ -110,22 +113,23 @@ int GetCustomerAge() {
         getline (customer, Age);
         getline (customer, Age);
         getline (customer, Age);
-        cout << Age << endl;
+        age = stoi(Age);
     }
     else
     {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return int();
+    return age;
 }
 
 // Grab the amount of money the customer has spent in the customer.txt file and return it as a float.
 double GetMoneySpentByCustomer() {
     fstream customer;
+    string MoneySpentByCustomer;
+    double money;
     customer.open("customer.txt", ios::in);
     if (customer.is_open()){
-        string MoneySpentByCustomer;
         getline (customer, MoneySpentByCustomer);
         getline (customer, MoneySpentByCustomer);
         getline (customer, MoneySpentByCustomer);
@@ -133,22 +137,23 @@ double GetMoneySpentByCustomer() {
         getline (customer, MoneySpentByCustomer);
         getline (customer, MoneySpentByCustomer);
         getline (customer, MoneySpentByCustomer);
-        cout << MoneySpentByCustomer << endl;
+        money = stod(MoneySpentByCustomer);
     }
     else 
     {
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return double();
+    return money;
 }
 
 // Grab whether or not the customer is lactose intolerant from the customer.txt file and return it as a bool.
 bool IsLactoseIntolerant() {
     fstream customer;
+    string IsLactoseIntolerant;
+    bool lactoseIntolerant;
     customer.open("customer.txt", ios::in);
     if (customer.is_open()){
-        string IsLactoseIntolerant;
         getline(customer,IsLactoseIntolerant);
         getline(customer,IsLactoseIntolerant);
         getline(customer,IsLactoseIntolerant);
@@ -157,14 +162,13 @@ bool IsLactoseIntolerant() {
         getline(customer,IsLactoseIntolerant);
         getline(customer,IsLactoseIntolerant);
         getline(customer,IsLactoseIntolerant);
-        getline(customer,IsLactoseIntolerant);
-        cout << "Customer is lactose intorelant: " << IsLactoseIntolerant << endl;
+        //lactoseIntolerant = boost::lexical_cast<bool>(IsLactoseIntolerant);
     }
     else{
         cout << "Error: file not found.\n";
     }
     customer.close();
-    return bool();
+    return lactoseIntolerant;
 }
 
 
@@ -369,18 +373,6 @@ void UpdateDietInventory() {
 /* ------------------------------------------- */
 
 int main() {
-    
-/*  string name = "Prethel Alam";
-    char sex = 'M';
-    float weight = 156.23;
-    int age = 23;
-    int money = 100;
-    bool isLactoseIntolerant = false;
-
-    UpdateCustomerInfo(name, sex, weight, age, money, isLactoseIntolerant); */
-    
-    // How would you call StoreCustomerInfo using the variables instead of the literals? 
-
     //Part 1
     StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100.23, false);
     
@@ -388,18 +380,34 @@ int main() {
     UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
 
     //Part 2
-    string name = GetCustomerName(); // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased.. keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
-    cout << name << endl;
+    string name = GetCustomerName(); // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased... keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
+    cout << "The customers name is " << name << endl;
 
-    GetCustomerSex();
+    
+    char sex = GetCustomerSex();
+    cout << "The customers sex is " << sex << endl;
+    
+    float weight = GetCustomerWeight();
+    cout << "The customers weight is " << weight << endl;
+    
+    int age = GetCustomerAge();
+    cout << "The customers age is " << age << endl;
+    
+    double money = GetMoneySpentByCustomer();
+    cout << "The customer has spent $" << money << endl;
 
-    GetCustomerWeight();
+    bool lactoseIntolerant = IsLactoseIntolerant();
+    cout << "The customer is lactose intolerant " << endl;
 
-    GetCustomerAge();
+    if (lactoseIntolerant == true)
+    {
+        cout << "True" << endl; 
+    }
+    else
+    {
+        cout << "False" << endl;
+    }
 
-    GetMoneySpentByCustomer();
-
-    IsLactoseIntolerant();
 
     GetCostOfStorage();
 /*
