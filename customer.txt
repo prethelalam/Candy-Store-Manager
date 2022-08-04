@@ -1,8 +1,8 @@
 Inside Store Customer Info.: 
 
-Zeus Alam
+Prethel Alam
 M
-20.57
-3
-89.43
-True
+153.23
+23
+100.23
+False

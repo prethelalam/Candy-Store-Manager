@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+//#include <vector>
 
 
 using namespace std;
@@ -212,10 +213,16 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
         if (option == 'y')
     {
     cout << "\n";
+    cout << "Customer information has been updated.\n";
     StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
-
-    return;
     }
+    else
+    {
+        cout << "\n";
+        cout << "Customer information will not be updated:\n";
+        cout << "\n";
+    }
+    return;
 }
 /* ------------------------------------------- */
 
@@ -343,29 +350,111 @@ double CalculatePrice() {
 // Each inventory starts out with 20 candies of each (so 20 kitkats, 20 snickers and 20 starbusts for normal inventory
 // and 20 lollipops, 20 butterscotch, and 20 almondjoys for diet). I'm choosing to leave how you want the file to be
 // formatted up to you. I'd recommend taking some inspiration from your customer.txt file - and you'll want to store integers of course.
-void CreateInventories() {
+
+void CreateNormalInventory (int Kitkats, int Snickers, int StarBursts) {
+    fstream Normal;
+    Normal.open("Normal_Inventory.txt", ios::out);
+    if (Normal.is_open())
+    {
+        Normal << "Normal Inventory\n";
+        Normal << "\n";
+        Normal << "Kit Kats - " << Kitkats << endl;
+        Normal << "Snickers - " << Snickers << endl;
+        Normal << "Starbursts - " << StarBursts << endl;
+    }
+    return;
+}
+
+void CreateDietInventory (int Lollipops, int Butterscotch, int AlmondJoys) {
+    fstream Diet;
+    Diet.open("Diet_Inventory.txt", ios::out);
+    if (Diet.is_open())
+    {
+        Diet << "Diet Inventory:\n";
+        Diet << "\n";
+        Diet << "Lollipops - " << Lollipops << endl;
+        Diet << "Butterscotch - " << Butterscotch << endl;
+        Diet << "Almond Joys - " << AlmondJoys << endl;
+    }
     return;
 }
 
 // Reset all the quantities of candies back in the NORMAL inventory back to 20
-void RestockNormalInventory() {
+void RestockNormalInventory(int RestockKitkats, int RestockSnickers, int RestockStarBursts) {
+    cout << "Would you like to restock your diet inventory? If yes, enter y.\n";
+    char option;
+    cin >> option;
+    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
+        cout << "\n";
+        cout << "Normal inventory has been restocked.\n";
+        CreateNormalInventory(RestockKitkats, RestockSnickers, RestockStarBursts);
+        cout << "\n";
+    }
+    else
+    {
+        cout << "\n";
+        cout << "Diet Inventory will not be restocked\n";
+        cout << "\n";
+    }
     return;
 }
 
 // Reset all the quantities of candies back in the DIET inventory back to 20
-void RestockDietInventory() {
+void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int RestockAlmondJoys) {
+    cout << "Would you like to restock your normal inventory? If yes, enter y.\n";
+    char option;
+    cin >> option;
+    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
+        cout << "\n";
+        cout << "Diet inventory has been restocked.\n";
+        CreateDietInventory(RestockLollipops, RestockButterscotch, RestockAlmondJoys);
+        cout << "\n";
+    }
+    else{
+        cout << "\n";
+        cout << "Normal Inventory will not be restocked\n";
+        cout << "\n";
+    }
     return;
 }
 
 // Update the quantities of the candies in the Normal inventory.
 // HINT: You'll have to add parameters.
-void UpdateNormalInventory() {
+void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int UpdateAMTStarBursts) {
+    cout << "Would you like to update your normal inventory? If yes, enter y.\n";
+    char option;
+    cin >> option;
+    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
+        cout << "\n";
+        cout << "Normal inventory has been updated.\n";
+        CreateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
+        cout << "\n";
+    }
+    else{
+        cout << "\n";
+        cout << "Normal Inventory will not be updated\n";
+        cout << "\n";
+    }
     return;
 }
 
 // Update the quantities of the candies in the Diet inventory.
 // HINT: You'll have to add parameters.
-void UpdateDietInventory() {
+void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int UpdateAMTAlmondJoys) {
+    cout << "Would you like to update your Diet inventory? If yes, enter y.\n";
+    char option;
+    cin >> option;
+    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
+        cout << "\n";
+        cout << "Diet inventory has been updated.\n";
+        CreateNormalInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
+        cout << "\n";
+    }
+    else{
+        cout << "\n";
+        cout << "Diet Inventory will not be updated\n";
+        cout << "\n";
+    }
     return;
 }
 
@@ -379,7 +468,8 @@ int main() {
     UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
 
     //Part 2
-    string name = GetCustomerName(); // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased... keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
+    string name = GetCustomerName(); 
+    // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased... keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
     cout << "The customers name is " << name << endl;
 
     
@@ -407,23 +497,38 @@ int main() {
         cout << "False" << endl;
     }
 
-
     GetCostOfStorage();
 /*
     //Part 4
     cout << "************Customer Menu************\n";
     cout << "How much money are you spending on candy?\n";
-
     DisplayNormalMenu();
-
     DisplayDietMenu();
-
     DisplayMenuForCustomer();
         
     
     TakeCustomerOrder();
     */
     
+    //Part 5
+    int Lollipops = 20, Butterscotch = 20, AlmondJoys = 20;
+    CreateDietInventory(Lollipops, Butterscotch, AlmondJoys);
 
+    int KitKats = 20, Snickers = 20, StarBursts = 20;
+    CreateNormalInventory(KitKats, Snickers, StarBursts);
+    //vector<int> Lollipops = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+
+    int RestockKitKats = 20, RestockSnickers = 20, RestockStarBursts = 20;
+    
+    RestockNormalInventory(RestockKitKats, RestockSnickers, RestockStarBursts);
+
+    int RestockLollipops = 20, RestockButterscotch = 20, RestockAlmondJoys = 20;
+    RestockDietInventory(RestockLollipops, RestockButterscotch, RestockStarBursts);
+    
+    int UpdateAMTKitKats = 30, UpdateAMTSnickers = 30, UpdateAMTStarBursts = 30;
+    UpdateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
+
+    int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
+    UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
     
 }
