@@ -464,6 +464,7 @@ int GetNumAlmondJoys() {
 // have descriptions of what each function should do. Please do not edit these descriptions! They will provide you with useful information.
 // Furthermore, these functions should be implemented IN ORDER.
 
+
 // This function (GreetCustomer) should ONLY print out (display to terminal) the following message:
 // "Hello <customer name>! Welcome to WorryFree Candee!"
 // This function should do NOTHING else except print that message out.
@@ -507,7 +508,7 @@ void WelcomeNewCustomer (string customer_name) {
 // At the very end of the function, you will call StoreCustomerInfo with the new information and present
 // the customer with a success message.
 // The success message should read exactly as follows: "Thank you for joining WorryFree Candee! We have recorded your information."
-void HandleNewCustomerForInformation() {
+void HandleNewCustomerInformation() {
     // Prompt the customer for their full name below this line. Store the customer's input in a variable named "customer_name"
 
     // Prompt the customer for their sex below this line. Store the customer's input in a variable named "customer_sex"
@@ -819,6 +820,37 @@ void TakeCustomerOrder() {
 // **--**
 
 /* ------------------------------------------- */
+
+/* Part 6 - The easy part - Combining everything into a coherent program
+ * Alright, so now you've implemented all the functionality of everything the program, from displaying messages
+ * to storing and updating data. Now it's time to put it into one big program. We're going to create a single function
+ * called StartCandyManager and put everything together in there. Then we'll call that function in main
+*/
+void StartCandyManager() {
+    // Imagine a customer just walked in! Go ahead any use ask them for their name (using cout), and store their input into a string
+    // variable named "customer_name"
+    
+    // Now that we have the customer's name, let's go ahead and greet them by using our GreetCustomer function.
+    
+    // Now, let's go ahead and ask if they're a returning customer using our AskIfReturningCustomer function. Make sure
+    // to get the customer's input here.
+    
+    // Now that we know whether they are a returning customer or not, we have display the correct respective message
+    // if they are a returning customer, then say welcome back using our SayWelcomeBack function
+    // otherwise, if they are a new customer, then welcome a new customer using our WelcomeNewCustomer function AND also
+    // call our HandleNewCustomerInformation function to record their information for the first time
+    
+    // Now we want to display either the normal menu or the diet menu, based on the amount the customer has spent so
+    // far. Luckily, we've already implemented this logic in the ShouldDisplayNormalMenu function. Use the
+    // ShouldDisplayNormalMenu function in an if statement - if ShouldDisplayNormalMenu returns true, then lets
+    // display the normal menu using the DisplayNormalMenu function and then handle the input using the 
+    // HandleNormalMenuCandyChoice function. Otherwise, if ShouldDisplayNormalMenu returns false, then lets
+    // display the diet menu using the DisplayDietMenu function and then handle the input using the 
+    // HandleDietMenuCandyChoice function
+    
+    
+    // After all that is done, say thank you to the customer!
+}
 
 int main() {
     //Part 1
