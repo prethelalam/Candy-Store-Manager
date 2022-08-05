@@ -239,87 +239,55 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
 // field -- use the UpdateCustomerInfo function!
 // Hello! Welcome to WorryFree Candee! The CandyShop where you don't have to worry about how much you're eating candy because we'll handle that for you!
 
-void DisplayNormalMenu() {
-    int Spent;
-        cin >> Spent;
-    if (Spent <=25)
-    {
-        cout << "\n";
-        cout << "Since you would like to spend less than $25. Here is the Normal Menu is below: \n";
-        cout << "\n";
-        cout << "1. Sour patch kids - $7\n";
-        cout << "2. Sour skittles - $8\n";
-        cout << "3. Sour patch straws - $9\n";
-        cout << "\n";
-    }
-    return;
-}
-
-void DisplayDietMenu() {
-    int Spent;
-    if (Spent >= 25)
-    {
-    cout << "Since you would like to spend more than $25. Here is the Diet Menu below:\n";
-    cout << "\n";
-    cout << "4. King sized Cookies and Cream Hershey - $10\n";
-    cout << "5. Buncha Crunch - $11\n";
-    cout << "6. King sized gummy bears- $12\n";
-    cout << "\n";
-    }
-    return;
-}
-
 void DisplayMenuForCustomer() {
-    
     return;
     }
     
+
+void DisplayNormalMenu(int KitKatsMenu, int SnickersMenu, int StarburstsMenu) {
+    char option;
+    cout << "Would you like to see the Normal Menu? If yes, enter y. If no, enter n";
+    cin >> option;
+    if (option == 'y')
+    {
+        cout << "\n";
+        cout << "KitKats Price - $" << KitKatsMenu << endl;
+        cout << "Snickers Price - $" << SnickersMenu << endl;
+        cout << "Starbursts Price - $" << StarburstsMenu << endl;
+        cout << "\n";
+    }
+    else
+    {
+        cout << "\n";
+        cout << "Normal Menu will not be shown.\n";
+        cout << "\n";
+    }
+    return;
+}
+
+void DisplayDietMenu(int LollipopsMenu, int ButterscotchMenu, int AlmondJoysMenu) {
+    char option;
+    cout << "Would you like to see the Diet Menu? If yes, enter y. If no, enter n";
+    cin >> option;
+    if (option == 'y')
+    {
+        cout << "\n";
+        cout << "Lollipops Price - $" << LollipopsMenu << endl;
+        cout << "Butterscotch Price - $" << ButterscotchMenu << endl;
+        cout << "Almond Joys Price - $" << AlmondJoysMenu << endl;
+        cout << "\n";
+    }
+    else
+    {
+        cout << "\n";
+        cout << "Diet Menu will not be shown.\n";
+        cout << "\n";
+    }
+    return;
+}
 
 void TakeCustomerOrder() {
-    int Spent;
-    int option;
-    char n;
-    fstream order;
-    if (Spent <= 25)
-    {
-        cout << "\n";
-        cout << "Please select the corresponding number of the candy you would like to buy.\n";
-        cin >> option;
-        if (option == 1)
-        {
-            cout << "You have chosen to purchase Sour Patch Kids. What else would you like to purchase?\n";
-        order.open("order.txt", ios::out);
-        if (order.is_open()){
-            order << "Your order is stated below:\n";
-            order << "\n";
-            order << "Sour Patch Kids\n";
-            order.close();
-            cin >> option;
-        }
-
-        }
-
-        if (option == 2) //can't select this option first, if i do then i can't select option 1
-        {
-            cout << "You have chosen to purchase Sour Skittles. What else would you like to purchase?";
-            order.open("order.txt", ios::out);
-        if (order.is_open()){
-            order << "Your order is stated below:\n";
-            order << "\n";
-            order << "Sour Patch Kids\n";
-            order << "Sour Skittles\n";
-            order.close();
-        }
-        
-    
-    if (Spent >= 25) 
-    {
-        cout << "\n";
-        
-    } 
-    return;
-    }
-    }
+    return; 
 }
 void ServeCustomerCandy() {
     return;
@@ -358,9 +326,9 @@ void CreateNormalInventory (int Kitkats, int Snickers, int StarBursts) {
     {
         Normal << "Normal Inventory\n";
         Normal << "\n";
-        Normal << "Kit Kats - " << Kitkats << endl;
-        Normal << "Snickers - " << Snickers << endl;
-        Normal << "Starbursts - " << StarBursts << endl;
+        Normal << "Kit Kats Quantity - " << Kitkats << endl;
+        Normal << "Snickers Quantity - " << Snickers << endl;
+        Normal << "Starbursts Quantity - " << StarBursts << endl;
     }
     return;
 }
@@ -372,16 +340,16 @@ void CreateDietInventory (int Lollipops, int Butterscotch, int AlmondJoys) {
     {
         Diet << "Diet Inventory:\n";
         Diet << "\n";
-        Diet << "Lollipops - " << Lollipops << endl;
-        Diet << "Butterscotch - " << Butterscotch << endl;
-        Diet << "Almond Joys - " << AlmondJoys << endl;
+        Diet << "Lollipops Quantity - " << Lollipops << endl;
+        Diet << "Butterscotch Quantity - " << Butterscotch << endl;
+        Diet << "Almond Joys Quantity - " << AlmondJoys << endl;
     }
     return;
 }
 
 // Reset all the quantities of candies back in the NORMAL inventory back to 20
 void RestockNormalInventory(int RestockKitkats, int RestockSnickers, int RestockStarBursts) {
-    cout << "Would you like to restock your diet inventory? If yes, enter y.\n";
+    cout << "Would you like to restock your diet inventory? If yes, enter y. If no, enter n.\n";
     char option;
     cin >> option;
     if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
@@ -401,7 +369,7 @@ void RestockNormalInventory(int RestockKitkats, int RestockSnickers, int Restock
 
 // Reset all the quantities of candies back in the DIET inventory back to 20
 void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int RestockAlmondJoys) {
-    cout << "Would you like to restock your normal inventory? If yes, enter y.\n";
+    cout << "Would you like to restock your normal inventory? If yes, enter y. If no, enter n.\n";
     char option;
     cin >> option;
     if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
@@ -421,7 +389,7 @@ void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int Res
 // Update the quantities of the candies in the Normal inventory.
 // HINT: You'll have to add parameters.
 void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int UpdateAMTStarBursts) {
-    cout << "Would you like to update your normal inventory? If yes, enter y.\n";
+    cout << "Would you like to update your normal inventory? If yes, enter y. If no, enter n.\n";
     char option;
     cin >> option;
     if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
@@ -441,7 +409,7 @@ void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int Upda
 // Update the quantities of the candies in the Diet inventory.
 // HINT: You'll have to add parameters.
 void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int UpdateAMTAlmondJoys) {
-    cout << "Would you like to update your Diet inventory? If yes, enter y.\n";
+    cout << "Would you like to update your Diet inventory? If yes, enter y. If no, enter n.\n";
     char option;
     cin >> option;
     if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
@@ -450,7 +418,8 @@ void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int 
         CreateNormalInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
         cout << "\n";
     }
-    else{
+    else
+    {
         cout << "\n";
         cout << "Diet Inventory will not be updated\n";
         cout << "\n";
@@ -498,17 +467,16 @@ int main() {
     }
 
     GetCostOfStorage();
-/*
-    //Part 4
-    cout << "************Customer Menu************\n";
-    cout << "How much money are you spending on candy?\n";
-    DisplayNormalMenu();
-    DisplayDietMenu();
-    DisplayMenuForCustomer();
-        
     
-    TakeCustomerOrder();
-    */
+    //Part 4
+    
+    int KitKatsMenu = 7, SnickersMenu = 8, StarburstsMenu = 9;
+    DisplayNormalMenu(KitKatsMenu, SnickersMenu, StarburstsMenu);
+
+    int LollipopsMenu = 10, ButterscotchMenu = 11, AlmondJoysMenu = 12;
+    DisplayDietMenu(LollipopsMenu, ButterscotchMenu, AlmondJoysMenu);
+    
+
     
     //Part 5
     int Lollipops = 20, Butterscotch = 20, AlmondJoys = 20;
@@ -530,5 +498,6 @@ int main() {
 
     int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
     UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
+    
     
 }

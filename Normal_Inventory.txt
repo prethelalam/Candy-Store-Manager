@@ -1,5 +1,5 @@
 Normal Inventory
 
-Kit Kats - 30
-Snickers - 30
-Starbursts - 30
+Kit Kats Quantity - 20
+Snickers Quantity - 20
+Starbursts Quantity - 20
