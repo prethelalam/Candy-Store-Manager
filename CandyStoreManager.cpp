@@ -9,27 +9,27 @@ using namespace std;
 //PROJECT HAS NOT BEEN COMPLETED YET
 
 void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, double Money, bool IsLactoseIntolerant) {
-    fstream customer; //the fstream data type has a property of reading, writing, and working with files. 
+    fstream customer; //the fstream data type has a property of reading, writing, and working with files.
     customer.open("customer.txt",ios::out); //ios::out is outputting information to the file
-    if (customer.is_open()) 
+    if (customer.is_open())
     {
-    customer << "Inside Store Customer Info.: \n";
-    customer << "\n";
-    customer << Name << endl;
-    customer << Sex << endl;
-    customer << Weight << endl;
-    customer << Age << endl;
-    customer << Money << endl;
+        customer << "Inside Store Customer Info.: \n";
+        customer << "\n";
+        customer << Name << endl;
+        customer << Sex << endl;
+        customer << Weight << endl;
+        customer << Age << endl;
+        customer << Money << endl;
 
-    if (IsLactoseIntolerant == true)
-    {
-        customer << "True" << endl; 
-    }
-    else
-    {
-        customer << "False" << endl;
-    }
-    customer.close();
+        if (IsLactoseIntolerant == true)
+        {
+            customer << "True" << endl;
+        }
+        else
+        {
+            customer << "False" << endl;
+        }
+        customer.close();
     }
 }
 
@@ -37,7 +37,7 @@ void StoreCustomerInfo(string Name, char Sex, float Weight, int Age, double Mone
 
 /* Part 2 - Reading customer info from the file */
 // For each of these functions, you need to read the corresponding information in the customers.txt file and return it from the function
-// For example, you should be able to do this in the main function: 
+// For example, you should be able to do this in the main function:
 // string name = GetCustomerName();
 // And receive the correct customer name from the GetCustomerName function. Rinse and repeat for every function in this part.
 
@@ -51,7 +51,7 @@ string GetCustomerName() {
         getline(customer, Name);
         getline(customer, Name);
     }
-    else 
+    else
     {
         cout << "Error: File not found.\n";
     }
@@ -71,7 +71,7 @@ char GetCustomerSex() {
         getline (customer, Sex);
         sex = Sex[0];
     }
-    else 
+    else
     {
         cout << "Error: file not found.\n";
     }
@@ -140,7 +140,7 @@ double GetMoneySpentByCustomer() {
         getline (customer, MoneySpentByCustomer);
         money = stod(MoneySpentByCustomer);
     }
-    else 
+    else
     {
         cout << "Error: file not found.\n";
     }
@@ -173,7 +173,7 @@ bool IsLactoseIntolerant() {
 
 
 
-// The cost of storage is a function that mimics how much storage it would take to save all the customer's information. 
+// The cost of storage is a function that mimics how much storage it would take to save all the customer's information.
 // This storage is determined by the data type it takes to store the customer's information in your program. Specifically,
 // it is directly proportional to the amount of bytes required for each data type.
 // Create a variable called "byteMultiplier" as a double and set its value to 2.5. Then, use the previous functions (GetCustomerName, GetCustomerSex, etc)
@@ -210,11 +210,11 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
     cout << "Do you want to update the customers information? If yes, enter y.\n";
     char option;
     cin >> option;
-        if (option == 'y')
+    if (option == 'y')
     {
-    cout << "\n";
-    cout << "Customer information has been updated.\n";
-    StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
+        cout << "\n";
+        cout << "Customer information has been updated.\n";
+        StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
     }
     else
     {
@@ -230,7 +230,7 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
 
 // As a candy store, you also need to manage your inventory of candy. You have two types of candy: normal and diet
 // Consequently, you'll manage two different inventories: a normal inventory (for all the normal candies) and a diet
-// inventory (for all the diet candies). 
+// inventory (for all the diet candies).
 // Luckily, each inventory only has 3 types of candy
 // For the normal inventory, you have: KitKats, Snickers, and Starburst
 // For the diet inventory, you have: Lollipops, Butterscotch, and AlmondJoys
@@ -391,7 +391,7 @@ void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int 
 /* Part 4b - Getting quantities from your inventory */
 
 // Now that you have a dedicated normal inventory and a dedicated diet inventory, it's time to get that information from the inventory
-// This part will be similar to how you got the customer's info from the customer.txt file. Essentially, you'll just be writing functions that 
+// This part will be similar to how you got the customer's info from the customer.txt file. Essentially, you'll just be writing functions that
 // get the quantities from either the normal inventory or the diet inventory
 
 // In this function GetNumSnickers, get the number of snickers you have left in your normal inventory, and return the amount as an integer
@@ -411,7 +411,7 @@ int GetNumStarbursts() {
 
 // In this function GetNumLollipops, get the number of snickers you have left in your diet inventory, and return the amount as an integer
 int GetNumLollipops() {
-    return 0;   
+    return 0;
 }
 
 // In this function GetNumButterscotch, get the number of snickers you have left in your diet inventory, and return the amount as an integer
@@ -432,15 +432,15 @@ int GetNumAlmondJoys() {
 // First, let's add some context to the project. I'm going to describe the project prompt below:
 
 // Imagine you're now the owner of a hypothetical new candy shop, WorryFree Candee. The unique thing about your candy store is that you're very caring
-// about your customers' health. You want your customers to keep coming back to your shop to buy your candy without worrying about their health, hence the 
+// about your customers' health. You want your customers to keep coming back to your shop to buy your candy without worrying about their health, hence the
 // name of the shop, "WorryFree" Candee. You keep your customers worry-free by keeping track of their visits to the candy shop - specifically, you keep track
 // of their name, sex, weight, age, whether or not they're lactose intolerant, and *most importantly*, you keep track of how much money that the customer
-// has spent so far in your candy shop. 
+// has spent so far in your candy shop.
 
-// By keeping track of the amount that a customer has spent, you can keep the customer worry-free by offering a 
+// By keeping track of the amount that a customer has spent, you can keep the customer worry-free by offering a
 // normal menu of candy if they HAVEN'T spent a lot of money, or a diet menu of candy if HAVE spent a lot of money.
 
-// Your normal menu of candy has three items: Snickers ($5 each), Starburst ($3 each), and KitKats ($4 each). 
+// Your normal menu of candy has three items: Snickers ($5 each), Starburst ($3 each), and KitKats ($4 each).
 // Your diet menu of candy has three items as well: lollipops ($2 each), butterscotch ($1 each), and almondjoys ($1 each).
 
 // Now, as the owner of the store, you also have to keep track of the inventory of each of these candies since you only have a limited stock of each
@@ -450,21 +450,21 @@ int GetNumAlmondJoys() {
 // And that's pretty much it for the prompt.
 
 // In parts 1-3, you implemented storing the customer information - when someone "walks" in to your shop to place an order, you can either store their info
-// (using StoreCustomerInfo), or you can read their information (using all your GetCustomerName, GetCustomerSex, etc functions), or you can 
-// update the customer's information (using UpdateCustomerInfo). 
+// (using StoreCustomerInfo), or you can read their information (using all your GetCustomerName, GetCustomerSex, etc functions), or you can
+// update the customer's information (using UpdateCustomerInfo).
 
 // In part 4a and 4b, you implement the inventory system. You can create an inventory, restock and inventory, and finally, you can update an inventory.
 // You can also get all of the amounts of each candy (which you implemented in 4b)
 
 // Now for Part 5, we're going to start displaying prompts and menus to simulate a customer walking in and ordering something off the menu.
-// The prompts and menus that you will implement in this part will range from greeting the customer, to taking in the customers order, to refusing the a customer's 
-// order if you don't have enough inventory for their order. 
+// The prompts and menus that you will implement in this part will range from greeting the customer, to taking in the customers order, to refusing the a customer's
+// order if you don't have enough inventory for their order.
 
 // I have created functions below (and I have edited the previous functions to add more clarity). Each of the functions that I have created below
 // have descriptions of what each function should do. Please do not edit these descriptions! They will provide you with useful information.
-// Furthermore, these functions should be implemented IN ORDER.  
+// Furthermore, these functions should be implemented IN ORDER.
 
-// This function (GreetCustomer) should ONLY print out (display to terminal) the following message: 
+// This function (GreetCustomer) should ONLY print out (display to terminal) the following message:
 // "Hello <customer name>! Welcome to WorryFree Candee!"
 // This function should do NOTHING else except print that message out.
 void GreetCustomer(string customer_name) {
@@ -490,12 +490,12 @@ void SayWelcomeBack(string customer_name) {
 // forward to working with you! First, let's get some information about you before we move on..."
 // DO NOT DO ANY INPUT HANDLING IN THIS FUNCTION. YOUR INPUT HANDLING SHOLD BE DONE IN MAIN.
 void WelcomeNewCustomer (string customer_name) {
-    // print out the prompt below this line 
+    // print out the prompt below this line
 }
 
 // This function (HandleNewCustomerForInformation) is going to ask the customer about the name, sex, weight, age, and whether or not they're lactose intolerant.
 // You would only ask this information to a customer IF they're a NEW customer (otherwise, you'd already have the customer's information stored
-// in your text file). 
+// in your text file).
 // You are going to prompt the following in ORDER:
 // Ask for the customer's full name using the following prompt EXACTLY: "What is your full name?: "
 // Ask for the customer's sex using the following prompt EXACTLY: "What do you identify as? (M, F, O)?: "
@@ -509,35 +509,37 @@ void WelcomeNewCustomer (string customer_name) {
 // The success message should read exactly as follows: "Thank you for joining WorryFree Candee! We have recorded your information."
 void HandleNewCustomerForInformation() {
     // Prompt the customer for their full name below this line. Store the customer's input in a variable named "customer_name"
-    
+
     // Prompt the customer for their sex below this line. Store the customer's input in a variable named "customer_sex"
-    
+
     // Prompt the customer for their weight below this line. Store the customer's input in a variable named "customer_weight"
-    
+
     // Prompt the customer for their age below this line. Store the customer's input in a variable named "customer_age"
-    
+
     // Initialize a boolean variable named "is_lactose_intolerant" with the value of false
-    
+
     // Ask the customer if they are lactose intolerant using the prompt described above. If the customer answers "y", assign the "is_lactose_intolerant"
     // variable a value of true. Otherwise, assign the "is_lactose_intolerant" variable a value of false.
-    
+
     // Initialize a double variable named "money_spent_by_customer" with a value of 0.0 . This is to represent that the customer has not spent any money
-    // on candy yet, since they are a new customer. 
-    
+    // on candy yet, since they are a new customer.
+
     // Finally, call StoreCustomerInfo below this line with all the variables you created in the lines above.
-    
+
     // Print out to the customer the sucess message described above
 }
 
-// This function (ShouldDisplayNormalMenu) is going to be used by YOU (the programmer) to decide whether you should display the normal menu or the 
+// This function (ShouldDisplayNormalMenu) is going to be used by YOU (the programmer) to decide whether you should display the normal menu or the
 // diet menu. It will NOT do any PRINTING, but it will RETURN a value.
 // The function will return a boolean value. Booleans can only be two values: true or false.
 // This function will check the amount of money that the customer has spent so far on candy by using your GetMoneySpentByCustomer function.
-// If the customer has spent LESS THAN $25 on candy, you should return true. Otherwise, you should return false. 
+// If the customer has spent LESS THAN $25 on candy, you should return true. Otherwise, you should return false.
 bool ShouldDisplayNormalMenu() {
     // initialize a double variable called "money_spent_by_customer" with the value of a call to GetMoneySpentByCustomer
-    
+
     // write an if statement that checks if "money_spent_by_customer" is less than 25. If it is less than 25, return true. Otherwise, return false.
+
+    return false; // <- YOU NEED TO CHANGE THIS TO RETURN TRUE OR FALSE BASED ON THE CUSTOMER AMOUNT!!!
 }
 
 // This function (DisplayNormalMenu) is going to display the normal menu for candies. There are 3 items on the normal menu:
@@ -550,15 +552,15 @@ bool ShouldDisplayNormalMenu() {
 // YOU ARE **NOT** GOING TO HANDLE ANY INPUT IN THIS FUNCTION. THE INPUT HANDLING WILL BE DONE IN THE "HandleNormalMenuCandyChoice" FUNCTION
 void DisplayNormalMenu() {
     // print out the initial prompt
-    
+
     // print out the snickers prompt
-    
+
     // print out the starburst prompt
-    
+
     // print out the kitkats prompt
 }
 
-/// This function (HandleNormalMenuCandyChoice) is going to be called AFTER you call "DisplayNormalMenu". 
+/// This function (HandleNormalMenuCandyChoice) is going to be called AFTER you call "DisplayNormalMenu".
 // This function will ask the customer to input their candy choice, and then ask the customer for the amount of candy that they want.
 // Based off the prices described for the normal menu candies and the candy choice that the customer selected, you'll be able to determine
 // how much money the customer spent.
@@ -572,57 +574,57 @@ void DisplayNormalMenu() {
 // Finally, you'll prompt to the customer: "Thanks! Your total was: <total>. Your information has been updated!"
 void HandleNormalMenuCandyChoice() {
     // prompt the customer for which candy they want and store their answer in a string variable named "candy_choice"
-    
+    string candy_choice = "CHANGE THIS!!!";
     // prompt the customer for the amount of candies that they want, and store their answer in an integer variable named "amount_of_candies"
-    
+
     // initialize a double variable named "price_of_candy" with a value of -1.0
-    
+
     // i've written this if statement for you that checks their candy choice. you'll write the corresponding code for each of these if statements
-    if (candy_choice == "1") 
+    if (candy_choice == "1")
     {
         // if we're in here, the customer selected they want a Snickers. assign "price_of_candy" a value of 5.0. do this below this comment
-    } 
-    else if (candy_choice == "2") 
+    }
+    else if (candy_choice == "2")
     {
         // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0. do this below this comment
-    } 
-    else if (candy_choice == "3") 
+    }
+    else if (candy_choice == "3")
     {
         // if we're in here, the customer selected they want a KitKat. assign "price_of_candy" a value of 4.0. do this below this comment
 
     } else {
-        
+
         // if we're in here, the customer input something that wasn't a 1, a 2, or a 3. we're not going to handle this, so we're just going to exit.
         cout << "unhandled input. exiting.\n";
         return;
     }
-    
-    // now we're going to check our inventory based off the candy they selected. for example, if they selected snickers, we need to make sure we 
+
+    // now we're going to check our inventory based off the candy they selected. for example, if they selected snickers, we need to make sure we
     // have enough snickers to sell the customer
-    if (candy_choice == "1") 
+    if (candy_choice == "1")
     {
         // if we're in here, the customer selected they want a Snickers. we're going to check how many snickers are remaining in our inventory.
         int num_snickers_in_inventory = GetNumSnickers();
-        
+
         // now, if the number of snickers in the inventory is less than the "amount_of_candies", then you need to print
         // "Sorry, we don't have enough candy!"
         // otherwise, calculate the cost of the order, update the customers info with the new money spent on candy by taking what they previously spent
         // and add the cost of the current order, and then update the inventory.
-        
-    } 
-    else if (candy_choice == "2") 
+
+    }
+    else if (candy_choice == "2")
     {
         // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0.
-        
+
         // do the same thing as you did in snickers, but with starburst
-    } 
-    else if (candy_choice == "3") 
+    }
+    else if (candy_choice == "3")
     {
         // if we're in here, the customer selected they want a KitKat. assign "price_of_candy" a value of 4.0. do this below this comment
         // do the same thing as you did in snickers, but with kitkats.
 
     } else {
-        
+
         // if we're in here, the customer input something that wasn't a 1, a 2, or a 3. we're not going to handle this, so we're just going to exit.
         cout << "unhandled input. exiting.\n";
         return;
@@ -639,15 +641,15 @@ void HandleNormalMenuCandyChoice() {
 // YOU ARE **NOT** GOING TO HANDLE ANY INPUT IN THIS FUNCTION. THE INPUT HANDLING WILL BE DONE IN THE "HandleDietMenuCandyChoice" FUNCTION
 void DisplayDietMenu() {
     // print out the initial prompt
-    
+
     // print out the Lollipops prompt
-    
+
     // print out the Butterscotch prompt
-    
+
     // print out the Almondjoys prompt
 }
 
-/// This function (HandleDietMenuCandyChoice) is going to be called AFTER you call "DisplayDietMenu". 
+/// This function (HandleDietMenuCandyChoice) is going to be called AFTER you call "DisplayDietMenu".
 // This function will ask the customer to input their candy choice, and then ask the customer for the amount of candy that they want.
 // Based off the prices described for the diet menu candies and the candy choice that the customer selected, you'll be able to determine
 // how much money the customer spent.
@@ -661,57 +663,58 @@ void DisplayDietMenu() {
 // Finally, you'll prompt to the customer: "Thanks! Your total was: <total>. Your information has been updated!"
 void HandleDietMenuCandyChoice() {
     // prompt the customer for which candy they want and store their answer in a string variable named "candy_choice"
-    
+    string candy_choice = "CHANGE THIS!!!";
+
     // prompt the customer for the amount of candies that they want, and store their answer in an integer variable named "amount_of_candies"
-    
+
     // initialize a double variable named "price_of_candy" with a value of -1.0
-    
+
     // i've written this if statement for you that checks their candy choice. you'll write the corresponding code for each of these if statements
-    if (candy_choice == "1") 
+    if (candy_choice == "1")
     {
         // if we're in here, the customer selected they want lollipops. assign "price_of_candy" a value of 2.0. do this below this comment
-    } 
-    else if (candy_choice == "2") 
+    }
+    else if (candy_choice == "2")
     {
         // if we're in here, the customer selected they want a butterscotch. assign "price_of_candy" a value of 1.0. do this below this comment
-    } 
-    else if (candy_choice == "3") 
+    }
+    else if (candy_choice == "3")
     {
         // if we're in here, the customer selected they want a almondjoys. assign "price_of_candy" a value of 1.0. do this below this comment
 
     } else {
-        
+
         // if we're in here, the customer input something that wasn't a 1, a 2, or a 3. we're not going to handle this, so we're just going to exit.
         cout << "unhandled input. exiting.\n";
         return;
     }
-    
-    // now we're going to check our inventory based off the candy they selected. for example, if they selected lollipops, we need to make sure we 
+
+    // now we're going to check our inventory based off the candy they selected. for example, if they selected lollipops, we need to make sure we
     // have enough snickers to sell the customer
-    if (candy_choice == "1") 
+    if (candy_choice == "1")
     {
         // if we're in here, the customer selected they want a Snickers. we're going to check how many snickers are remaining in our inventory.
         int num_lollipops = GetNumLollipops();
-        
+
         // now, if the number of lollipops in the inventory is less than the "amount_of_candies" (which is the number of candies that the customer wants), then you need to print
         // "Sorry, we don't have enough candy!"
         // otherwise, calculate the cost of the order, update the customers info with the new money spent on candy by taking what they previously spent
         // and add the cost of the current order, and then update the inventory.
-        
-    } 
-    else if (candy_choice == "2") 
+
+    }
+    else if (candy_choice == "2")
     {
         // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0.
-        
+
         // do the same thing as you did in snickers, but with starburst
-    } 
-    else if (candy_choice == "3") 
+    }
+    else if (candy_choice == "3")
     {
         // if we're in here, the customer selected they want a KitKat. assign "price_of_candy" a value of 4.0. do this below this comment
         // do the same thing as you did in snickers, but with kitkats.
 
     } else {
-        
+
         // if we're in here, the customer input something that wasn't a 1, a 2, or a 3. we're not going to handle this, so we're just going to exit.
         cout << "unhandled input. exiting.\n";
         return;
@@ -721,7 +724,7 @@ void HandleDietMenuCandyChoice() {
 /* this is your old code -- i kept it in a comment, but i believe it's not going to be as helpful now that i've updated the instructions
 
 // In DisplayMenuForCustomer, we're going to display either a normal menu or a diet menu based on how much the customer has spent so far
-// on candy. If the customer has spent less than $25 dollars on candy, display the normal menu. Otherwise, display the diet menu. 
+// on candy. If the customer has spent less than $25 dollars on candy, display the normal menu. Otherwise, display the diet menu.
 // You can choose whichever function you want to implement first: If you want to implement the "DisplayNormalMenu" functions before this "DisplayMenuForCustomer"
 // function, all good!
 // Then, you're going to ask what candy the customer chooses and how many of the candy they want. Then, you're going to update the "MoneySpentOnCandies"
@@ -758,10 +761,10 @@ void DisplayDietMenu() {
 }
 
 void DisplayMenuForCustomer() {
-    
+
     return;
     }
-    
+
 
 void TakeCustomerOrder() {
     int Spent;
@@ -798,13 +801,13 @@ void TakeCustomerOrder() {
             order << "Sour Skittles\n";
             order.close();
         }
-        
-    
-    if (Spent >= 25) 
+
+
+    if (Spent >= 25)
     {
         cout << "\n";
-        
-    } 
+
+    }
     return;
     }
     }
@@ -820,25 +823,25 @@ void TakeCustomerOrder() {
 int main() {
     //Part 1
     StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100.23, false);
-    
+
     //Part 3
     UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
 
     //Part 2
-    string name = GetCustomerName(); 
+    string name = GetCustomerName();
     // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased... keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
     cout << "The customers name is " << name << endl;
 
-    
+
     char sex = GetCustomerSex();
     cout << "The customers sex is " << sex << endl;
-    
+
     float weight = GetCustomerWeight();
     cout << "The customers weight is " << weight << endl;
-    
+
     int age = GetCustomerAge();
     cout << "The customers age is " << age << endl;
-    
+
     double money = GetMoneySpentByCustomer();
     cout << "The customer has spent $" << money << endl;
 
@@ -847,7 +850,7 @@ int main() {
 
     if (lactoseIntolerant == true)
     {
-        cout << "True" << endl; 
+        cout << "True" << endl;
     }
     else
     {
@@ -855,17 +858,19 @@ int main() {
     }
 
     GetCostOfStorage();
-    
+
     //Part 4
-    
+
+    // I have commented these out because the instructions have changed - ryan
     int KitKatsMenu = 7, SnickersMenu = 8, StarburstsMenu = 9;
-    DisplayNormalMenu(KitKatsMenu, SnickersMenu, StarburstsMenu);
+//    DisplayNormalMenu(KitKatsMenu, SnickersMenu, StarburstsMenu);
+
 
     int LollipopsMenu = 10, ButterscotchMenu = 11, AlmondJoysMenu = 12;
-    DisplayDietMenu(LollipopsMenu, ButterscotchMenu, AlmondJoysMenu);
-    
+//    DisplayDietMenu(LollipopsMenu, ButterscotchMenu, AlmondJoysMenu);
 
-    
+
+
     //Part 5
     int Lollipops = 20, Butterscotch = 20, AlmondJoys = 20;
     CreateDietInventory(Lollipops, Butterscotch, AlmondJoys);
@@ -875,17 +880,17 @@ int main() {
     //vector<int> Lollipops = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
     int RestockKitKats = 20, RestockSnickers = 20, RestockStarBursts = 20;
-    
+
     RestockNormalInventory(RestockKitKats, RestockSnickers, RestockStarBursts);
 
     int RestockLollipops = 20, RestockButterscotch = 20, RestockAlmondJoys = 20;
     RestockDietInventory(RestockLollipops, RestockButterscotch, RestockStarBursts);
-    
+
     int UpdateAMTKitKats = 30, UpdateAMTSnickers = 30, UpdateAMTStarBursts = 30;
     UpdateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
 
     int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
     UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
-    
-    
+
+
 }
