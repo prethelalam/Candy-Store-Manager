@@ -3,6 +3,8 @@
 #include <fstream>
 //#include <vector>
 
+//spaces after are where you input your code
+
 
 using namespace std;
 
@@ -267,12 +269,11 @@ void CreateNormalInventory (int Kitkats, int Snickers, int StarBursts) {
     Normal.open("Normal_Inventory.txt", ios::out);
     if (Normal.is_open())
     {
-        Normal << "Normal Inventory\n";
-        Normal << "\n";
-        Normal << "Kit Kats Quantity - " << Kitkats << endl;
-        Normal << "Snickers Quantity - " << Snickers << endl;
-        Normal << "Starbursts Quantity - " << StarBursts << endl;
+        Normal << Kitkats << endl;
+        Normal << Snickers << endl;
+        Normal << StarBursts << endl;
     }
+    Normal.close();
     return;
 }
 
@@ -297,12 +298,11 @@ void CreateDietInventory (int Lollipops, int Butterscotch, int AlmondJoys) {
     Diet.open("Diet_Inventory.txt", ios::out);
     if (Diet.is_open())
     {
-        Diet << "Diet Inventory:\n";
-        Diet << "\n";
-        Diet << "Lollipops Quantity - " << Lollipops << endl;
-        Diet << "Butterscotch Quantity - " << Butterscotch << endl;
-        Diet << "Almond Joys Quantity - " << AlmondJoys << endl;
+        Diet << Lollipops << endl;
+        Diet << Butterscotch << endl;
+        Diet << AlmondJoys << endl;
     }
+    Diet.close();
     return;
 }
 
@@ -346,8 +346,9 @@ void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int Res
 }
 
 // Update the quantities of the candies in the Normal inventory.
+//this is used when a customer buys some candy. so if a customer buys 5 snickers. then that means inventory will have 5 few snickers (15), so you have to update it with the new quanities for it to be 15.
 // HINT: You'll have to add parameters.
-void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int UpdateAMTStarBursts) {
+void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int UpdateAMTStarBursts) { //update
     cout << "Would you like to update your normal inventory? If yes, enter y. If no, enter n.\n";
     char option;
     cin >> option;
@@ -367,7 +368,7 @@ void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int Upda
 
 // Update the quantities of the candies in the Diet inventory.
 // HINT: You'll have to add parameters.
-void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int UpdateAMTAlmondJoys) {
+void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int UpdateAMTAlmondJoys) { //update
     cout << "Would you like to update your Diet inventory? If yes, enter y. If no, enter n.\n";
     char option;
     cin >> option;
@@ -396,32 +397,122 @@ void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int 
 
 // In this function GetNumSnickers, get the number of snickers you have left in your normal inventory, and return the amount as an integer
 int GetNumSnickers() {
-    return 0;
+    fstream Normal;
+    string Snickers;
+    int snickers;
+    Normal.open("Normal_Inventory.txt", ios::in);
+    if (Normal.is_open())
+    {
+        getline(Normal, Snickers);
+        snickers = stoi(Snickers);
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    Normal.close();
+    return snickers;
 }
 
-// In this function GetNumKitkats, get the number of snickers you have left in your normal inventory, and return the amount as an integer
+// In this function GetNumKitkats, get the number of kitkats you have left in your normal inventory, and return the amount as an integer
 int GetNumKitkats() {
-    return 0;
+    fstream Normal;
+    string KitKats;
+    int kitkats;
+    Normal.open("Normal_Inventory.txt", ios::in);
+    if (Normal.is_open())
+    {
+        getline (Normal, KitKats);
+        getline (Normal, KitKats);
+        kitkats = stoi(KitKats);
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    Normal.close();
+    return kitkats;
 }
 
-// In this function GetNumStarbursts, get the number of snickers you have left in your normal inventory, and return the amount as an integer
+// In this function GetNumStarbursts, get the number of starbursts you have left in your normal inventory, and return the amount as an integer
 int GetNumStarbursts() {
-    return 0;
+    fstream Normal;
+    string Starbursts;
+    int starbursts;
+    Normal.open("Normal_Inventory.txt", ios::in);
+    if (Normal.is_open())
+    {
+        getline(Normal, Starbursts);
+        getline(Normal, Starbursts);
+        getline(Normal, Starbursts);
+        starbursts = stoi(Starbursts);
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    Normal.close();
+    return starbursts;
 }
 
-// In this function GetNumLollipops, get the number of snickers you have left in your diet inventory, and return the amount as an integer
+// In this function GetNumLollipops, get the number of lollipops you have left in your diet inventory, and return the amount as an integer
 int GetNumLollipops() {
-    return 0;
+    fstream Diet;
+    string Lollipops;
+    int lollipops;
+    Diet.open("Diet_Inventory.txt", ios::in);
+    if (Diet.is_open())
+    {
+        getline(Diet, Lollipops);
+        lollipops = stoi(Lollipops);
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    Diet.close();
+    return lollipops;
 }
 
-// In this function GetNumButterscotch, get the number of snickers you have left in your diet inventory, and return the amount as an integer
+// In this function GetNumButterscotch, get the number of butterscotch you have left in your diet inventory, and return the amount as an integer
 int GetNumButterscotch() {
-    return 0;
+    fstream Diet;
+    string Butterscotch;
+    int butterscotch;
+    Diet.open("Diet_Inventory.txt", ios::in);
+    if (Diet.is_open())
+    {
+        getline(Diet, Butterscotch);
+        getline(Diet, Butterscotch);
+        butterscotch = stoi(Butterscotch);
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    Diet.close();
+    return butterscotch;
 }
 
-// In this function GetNumAlmondJoys, get the number of snickers you have left in your diet inventory, and return the amount as an integer
+// In this function GetNumAlmondJoys, get the number of almond joys you have left in your diet inventory, and return the amount as an integer
 int GetNumAlmondJoys() {
-    return 0;
+    fstream Diet;
+    string AlmondJoys;
+    int almondjoys;
+    Diet.open("Diet_Inventory.txt", ios::in);
+    if (Diet.is_open())
+    {
+        getline(Diet, AlmondJoys);
+        getline(Diet, AlmondJoys);
+        getline(Diet, AlmondJoys);
+        almondjoys = stoi(AlmondJoys);
+    }
+    else
+    {
+        cout << "Error: file not found.\n";
+    }
+    Diet.close();
+    return almondjoys;
 }
 
 /* ------------------------------------------- */
@@ -438,7 +529,7 @@ int GetNumAlmondJoys() {
 // has spent so far in your candy shop.
 
 // By keeping track of the amount that a customer has spent, you can keep the customer worry-free by offering a
-// normal menu of candy if they HAVEN'T spent a lot of money, or a diet menu of candy if HAVE spent a lot of money.
+// normal menu of candy if they HAVEN'T spent a lot of money, or a diet menu of candy if HAVE spent a lot of money. normal menu = spent less than $25 and diet menu = spent more than $25
 
 // Your normal menu of candy has three items: Snickers ($5 each), Starburst ($3 each), and KitKats ($4 each).
 // Your diet menu of candy has three items as well: lollipops ($2 each), butterscotch ($1 each), and almondjoys ($1 each).
@@ -453,11 +544,11 @@ int GetNumAlmondJoys() {
 // (using StoreCustomerInfo), or you can read their information (using all your GetCustomerName, GetCustomerSex, etc functions), or you can
 // update the customer's information (using UpdateCustomerInfo).
 
-// In part 4a and 4b, you implement the inventory system. You can create an inventory, restock and inventory, and finally, you can update an inventory.
+// In part 4a and 4b, you implement the inventory system. You can create an inventory, restock an inventory, and finally, you can update an inventory.
 // You can also get all of the amounts of each candy (which you implemented in 4b)
 
 // Now for Part 5, we're going to start displaying prompts and menus to simulate a customer walking in and ordering something off the menu.
-// The prompts and menus that you will implement in this part will range from greeting the customer, to taking in the customers order, to refusing the a customer's
+// The prompts and menus that you will implement in this part will range from greeting the customer, to taking in the customers order, to refusing a customer's
 // order if you don't have enough inventory for their order.
 
 // I have created functions below (and I have edited the previous functions to add more clarity). Each of the functions that I have created below
@@ -527,7 +618,8 @@ void HandleNewCustomerInformation() {
 
     // Finally, call StoreCustomerInfo below this line with all the variables you created in the lines above.
 
-    // Print out to the customer the sucess message described above
+    // Print out to the customer the sucess message described above. print it out below this line.
+    
 }
 
 // This function (ShouldDisplayNormalMenu) is going to be used by YOU (the programmer) to decide whether you should display the normal menu or the
@@ -554,6 +646,7 @@ bool ShouldDisplayNormalMenu() {
 void DisplayNormalMenu() {
     // print out the initial prompt
 
+
     // print out the snickers prompt
 
     // print out the starburst prompt
@@ -576,6 +669,7 @@ void DisplayNormalMenu() {
 void HandleNormalMenuCandyChoice() {
     // prompt the customer for which candy they want and store their answer in a string variable named "candy_choice"
     string candy_choice = "CHANGE THIS!!!";
+
     // prompt the customer for the amount of candies that they want, and store their answer in an integer variable named "amount_of_candies"
 
     // initialize a double variable named "price_of_candy" with a value of -1.0
@@ -615,9 +709,9 @@ void HandleNormalMenuCandyChoice() {
     }
     else if (candy_choice == "2")
     {
-        // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0.
+        // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0. so this is calculating the cost of order
 
-        // do the same thing as you did in snickers, but with starburst
+        // do the same thing as you did in snickers, but with starburst. so the comments from 614 -617. apply the same way but with starbursts
     }
     else if (candy_choice == "3")
     {
@@ -894,20 +988,18 @@ int main() {
     //Part 4
 
     // I have commented these out because the instructions have changed - ryan
-    int KitKatsMenu = 7, SnickersMenu = 8, StarburstsMenu = 9;
+    //int KitKatsMenu = 12, SnickersMenu = 13, StarburstsMenu = 14;
 //    DisplayNormalMenu(KitKatsMenu, SnickersMenu, StarburstsMenu);
 
 
-    int LollipopsMenu = 10, ButterscotchMenu = 11, AlmondJoysMenu = 12;
+    //int LollipopsMenu = 12, ButterscotchMenu = 13, AlmondJoysMenu = 14;
 //    DisplayDietMenu(LollipopsMenu, ButterscotchMenu, AlmondJoysMenu);
 
-
-
-    //Part 5
-    int Lollipops = 20, Butterscotch = 20, AlmondJoys = 20;
+//Part 4a
+    int Lollipops = 12, Butterscotch = 13, AlmondJoys = 14;
     CreateDietInventory(Lollipops, Butterscotch, AlmondJoys);
 
-    int KitKats = 20, Snickers = 20, StarBursts = 20;
+    int KitKats = 12, Snickers = 13, StarBursts = 14;
     CreateNormalInventory(KitKats, Snickers, StarBursts);
     //vector<int> Lollipops = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
@@ -924,5 +1016,22 @@ int main() {
     int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
     UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
 
+    //Part 4b
+    int snickers = GetNumSnickers();
+    cout << "Normal inventory has " << snickers << " snickers.\n";
 
+    int kitkats = GetNumKitkats();
+    cout << "Normal inventory has " << kitkats << " snickers.\n";
+
+    int starbursts = GetNumStarbursts();
+    cout << "Normal inventory has " << starbursts << " snickers.\n";
+
+    int lollipops = GetNumLollipops();
+    cout << "Diet inventory has " << lollipops << " snickers.\n";
+    
+    int butterscotch = GetNumButterscotch();
+    cout << "Diet inventory has " << butterscotch << " snickers.\n";
+
+    int almondjoys = GetNumAlmondJoys();
+    cout << "Diet inventory has " << almondjoys << " snickers.\n";
 }

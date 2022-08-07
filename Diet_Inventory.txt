@@ -1,5 +1,3 @@
-Diet Inventory:
-
-Lollipops Quantity - 20
-Butterscotch Quantity - 20
-Almond Joys Quantity - 20
+12
+13
+14
