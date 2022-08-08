@@ -308,19 +308,23 @@ void CreateDietInventory (int Lollipops, int Butterscotch, int AlmondJoys) {
 }
 
 // Reset all the quantities of candies back in the NORMAL inventory back to 20
-void RestockNormalInventory(int RestockKitkats, int RestockSnickers, int RestockStarBursts) {
-    cout << "Would you like to restock your diet inventory? If yes, enter y. If no, enter n.\n";
-    char option;
-    cin >> option;
-    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
+void RestockNormalInventory(int RestockKitKats, int RestockSnickers, int RestockStarBursts) {
+    int KitKats = 12, Snickers = 13, StarBursts = 14;
+    if (KitKats <= 5)
+    {
+        if (Snickers <= 5)
+        {
+            if (StarBursts <= 5)
+            {
         cout << "\n";
         cout << "Normal inventory has been restocked.\n";
-        CreateNormalInventory(RestockKitkats, RestockSnickers, RestockStarBursts);
+        CreateNormalInventory(RestockKitKats, RestockSnickers, RestockStarBursts);
         cout << "\n";
+    }
+        }
     }
     else
     {
-        cout << "\n";
         cout << "Normal Inventory will not be restocked\n";
         cout << "\n";
     }
@@ -329,17 +333,22 @@ void RestockNormalInventory(int RestockKitkats, int RestockSnickers, int Restock
 
 // Reset all the quantities of candies back in the DIET inventory back to 20
 void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int RestockAlmondJoys) {
-    cout << "Would you like to restock your diet inventory? If yes, enter y. If no, enter n.\n";
-    char option;
-    cin >> option;
-    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
+    int Lollipops = 12, Butterscotch = 13, AlmondJoys = 14;
+    if (Lollipops <= 5)
+    {
+        if (Butterscotch <= 5)
+        {
+            if (AlmondJoys <= 5)
+            {
         cout << "\n";
         cout << "Diet inventory has been restocked.\n";
-        CreateDietInventory(RestockLollipops, RestockButterscotch, RestockAlmondJoys);
+        CreateNormalInventory(RestockLollipops, RestockButterscotch, RestockAlmondJoys);
         cout << "\n";
     }
-    else{
-        cout << "\n";
+        }
+    }
+    else
+    {
         cout << "Diet Inventory will not be restocked\n";
         cout << "\n";
     }
@@ -638,7 +647,7 @@ void HandleNewCustomerInformation() {
 
     // Ask the customer if they are lactose intolerant using the prompt described above. If the customer answers "y", assign the "is_lactose_intolerant"
     // variable a value of true. Otherwise, assign the "is_lactose_intolerant" variable a value of false.
-    char decision; //stuggling with this too 
+    char decision; //stuggling with this too (here to 661)
     cout << "Are you lactose intolerant? (y/n):\n";
     cin >> decision;
     cout << "\n"; // added for formatting
@@ -714,6 +723,7 @@ void DisplayNormalMenu() {
 // If you don't have enough candy, then you'll prompt: "Sorry, we don't have enough candy!"
 // Otherwise if you DO have enough candy, then you'll calculate how much the cost will be by using the (price per candy) * (amount of candies)
 // Finally, you'll prompt to the customer: "Thanks! Your total was: <total>. Your information has been updated!"
+
 void HandleNormalMenuCandyChoice() {
     // prompt the customer for which candy they want and store their answer in a string variable named "candy_choice"
     string candy_choice = "Which candy would you like (1, 2, 3)?:\n";// not sure what you mean by string candy_choice = "CHANGE THIS!!!"; is this what you meant?
@@ -766,7 +776,7 @@ void HandleNormalMenuCandyChoice() {
         //so am i supposed to be adding stuff here?
         if (num_snickers_in_inventory > amount_of_candies)
         {
-            price_of_candy * amount_of_candies; //also shouldnt i have this = to something?
+            int total = price_of_candy * amount_of_candies; //also shouldnt i have this = to something?
         }
         else
         {
@@ -982,6 +992,7 @@ int main() {
     }
 
     GetCostOfStorage();
+    */
 
 //Part 4a
     int Lollipops = 12, Butterscotch = 13, AlmondJoys = 14;
@@ -989,22 +1000,20 @@ int main() {
 
     int KitKats = 12, Snickers = 13, StarBursts = 14;
     CreateNormalInventory(KitKats, Snickers, StarBursts);
-    //vector<int> Lollipops = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
     int RestockKitKats = 20, RestockSnickers = 20, RestockStarBursts = 20;
-
     RestockNormalInventory(RestockKitKats, RestockSnickers, RestockStarBursts);
 
     int RestockLollipops = 20, RestockButterscotch = 20, RestockAlmondJoys = 20;
     RestockDietInventory(RestockLollipops, RestockButterscotch, RestockStarBursts);
 
-    int UpdateAMTKitKats = 30, UpdateAMTSnickers = 30, UpdateAMTStarBursts = 30;
-    UpdateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
+    //int UpdateAMTKitKats = 30, UpdateAMTSnickers = 30, UpdateAMTStarBursts = 30;
+    //UpdateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
 
-    int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
-    UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
+    //int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
+    //UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
 
-    //Part 4b
+   /* //Part 4b
     int snickers = GetNumSnickers();
     cout << "Normal inventory has " << snickers << " snickers.\n";
 
@@ -1040,7 +1049,7 @@ int main() {
     }
     else
     {
-    WelcomeNewCustomer(customer_name); */
+    WelcomeNewCustomer(customer_name); 
     //HandleNewCustomerInformation();
     //}
     
@@ -1052,6 +1061,7 @@ int main() {
 
     //Part 6
     StartCandyManager();
+    */
 
 }
 
