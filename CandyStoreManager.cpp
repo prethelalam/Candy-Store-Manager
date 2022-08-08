@@ -902,11 +902,29 @@ void HandleDietMenuCandyChoice() {
 void StartCandyManager() {
     // Imagine a customer just walked in! Go ahead any use ask them for their name (using cout), and store their input into a string
     // variable named "customer_name"
-    
+    string customer_name;
+    cout << "Hello! What is your name?\n";
+    cin >> customer_name; //this doesn't print the full name
+
     // Now that we have the customer's name, let's go ahead and greet them by using our GreetCustomer function.
-    
+    GreetCustomer(customer_name);
+
     // Now, let's go ahead and ask if they're a returning customer using our AskIfReturningCustomer function. Make sure
     // to get the customer's input here.
+    char answer = 'y';
+    AskIfReturningCustomer();
+    cin >> answer;
+    cout << "\n";
+
+    if (answer == 'y')
+    {
+    SayWelcomeBack(customer_name);
+    }
+    else
+    {
+    WelcomeNewCustomer(customer_name);
+    HandleNewCustomerInformation();
+    }
     
     // Now that we know whether they are a returning customer or not, we have display the correct respective message
     // if they are a returning customer, then say welcome back using our SayWelcomeBack function
@@ -1028,9 +1046,12 @@ int main() {
     
     //ShouldDisplayNormalMenu();
 
-    DisplayNormalMenu();
+    //DisplayNormalMenu();
 
-    HandleNormalMenuCandyChoice();
+    //HandleNormalMenuCandyChoice();
+
+    //Part 6
+    StartCandyManager();
 
 }
 
