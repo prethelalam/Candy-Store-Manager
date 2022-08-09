@@ -1,8 +1,8 @@
 Inside Store Customer Info.: 
 
-ZeusAlam
+PrethelAlam
 M
-22.3
-4
-50
+150.5
+23
+12
 False

@@ -251,14 +251,14 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
 // File end (this should not be in the file, only including this to make things clear):
 
 // PLEASE CHANGE THIS!!
-void CreateNormalInventory (int Snickers, int StarBursts, int Kitkats) {
+void CreateNormalInventory (int Snickers, int StarBursts, int KitKats) {
     fstream Normal;
     Normal.open("Normal_Inventory.txt", ios::out);
     if (Normal.is_open())
     {
         Normal << Snickers << endl;
         Normal << StarBursts << endl;
-        Normal << Kitkats << endl;
+        Normal << KitKats << endl;
     }
     Normal.close();
     return;
@@ -296,15 +296,9 @@ void CreateDietInventory (int Lollipops, int Butterscotch, int AlmondJoys) {
 // Reset all the quantities of candies back in the NORMAL inventory back to 20
 void RestockNormalInventory(int RestockSnickers, int RestockStarBursts, int  RestockKitKats) {
     int Snickers = 13, StarBursts = 14, KitKats = 12;
-    if (Snickers <= 5)
+    if (Snickers <= 5 && StarBursts <= 5 && KitKats <= 5)
     {
-        if (StarBursts <= 5)
-        {
-            if (KitKats <= 5)
-            {
         CreateNormalInventory(RestockSnickers, RestockStarBursts, RestockKitKats);
-    }
-        }
     }
     return;
 }
@@ -312,15 +306,9 @@ void RestockNormalInventory(int RestockSnickers, int RestockStarBursts, int  Res
 // Reset all the quantities of candies back in the DIET inventory back to 20
 void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int RestockAlmondJoys) {
     int Lollipops = 12, Butterscotch = 13, AlmondJoys = 14;
-    if (Lollipops <= 5)
+    if (Lollipops <= 5 && Butterscotch <= 5 && AlmondJoys <= 5)
     {
-        if (Butterscotch <= 5)
-        {
-            if (AlmondJoys <= 5)
-            {
         CreateNormalInventory(RestockLollipops, RestockButterscotch, RestockAlmondJoys);
-    }
-        }
     }
     return;
 }
@@ -568,14 +556,14 @@ void HandleNewCustomerInformation() {
     cin >> customer_last_name;
     //getline(cin, customer_name);
     string customer_name = customer_first_name + customer_last_name;
-    cout << "customers name is " << customer_name << endl;
+    //cout << "customers name is " << customer_name << endl;
     cout << "\n"; // added for formatting 
 
     // Prompt the customer for their sex below this line. Store the customer's input in a variable named "customer_sex"
     char customer_sex;
     cout << "What do you identify as? (M, F, O)?:\n";
     cin >> customer_sex;
-    cout << "customer sex is " << customer_sex << endl;
+    //cout << "customer sex is " << customer_sex << endl;
     cout << "\n"; // added for formatting
     
     // Prompt the customer for their weight below this line. Store the customer's input in a variable named "customer_weight"
@@ -1010,6 +998,7 @@ void StartCandyManager() {
     if (answer == 'y')
     {
     SayWelcomeBack(customer_name);
+    cout << "\n";
     }
     else
     {
@@ -1035,7 +1024,6 @@ void StartCandyManager() {
         DisplayDietMenu();
         HandleDietMenuCandyChoice();
     } 
-    
         cout << "\n";
     // After all that is done, say thank you to the customer!
         cout << "Thank you for shopping at WorryFree Candee. Come back soon!\n";
@@ -1158,12 +1146,6 @@ int main() {
     //HandleDietMenuCandyChoice();
 
     //Part 6
-    int RestockKitKats = 20, RestockSnickers = 20, RestockStarBursts = 20;
-    RestockNormalInventory(RestockSnickers, RestockStarBursts, RestockKitKats);
-
-    int RestockLollipops = 20, RestockButterscotch = 20, RestockAlmondJoys = 20;
-    RestockDietInventory(RestockLollipops, RestockButterscotch, RestockStarBursts);
-
     StartCandyManager();
 
 
