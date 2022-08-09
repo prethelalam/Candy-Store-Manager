@@ -1,11 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-//#include <vector>
-
-//spaces after are where you input your code
-//snickers, starbursts, kitkats
-
 
 using namespace std;
 
