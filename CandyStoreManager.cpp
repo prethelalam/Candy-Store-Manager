@@ -741,7 +741,7 @@ void HandleNormalMenuCandyChoice() {
 
         if (num_snickers_in_inventory > amount_of_candies)
         {
-            int UpdatedSnickers = num_snickers_in_inventory - amount_of_candies;
+        int UpdatedSnickers = num_snickers_in_inventory - amount_of_candies;
             //lets say you didn't check inventory
             //fix order obvi
         UpdateNormalInventory(UpdatedSnickers, GetNumStarbursts(), GetNumKitkats());
@@ -750,9 +750,8 @@ void HandleNormalMenuCandyChoice() {
         int total = price_of_candy * amount_of_candies; 
 
         double UpdatedMoneyInAccount = GetMoneySpentByCustomer() + total;
-        UpdateCustomerInfo(GetCustomerName(), GetCustomerSex(), GetCustomerWeight(), GetCustomerAge(), UpdatedMoneyInAccount, IsLactoseIntolerant());
 
-            
+        UpdateCustomerInfo(GetCustomerName(), GetCustomerSex(), GetCustomerWeight(), GetCustomerAge(), UpdatedMoneyInAccount, IsLactoseIntolerant());
         }
         else
         {
@@ -761,16 +760,14 @@ void HandleNormalMenuCandyChoice() {
     }
     else if (candy_choice == "2")
     {
-        // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0. so this is calculating the cost of order
-        
-
+        // if we're in here, the customer selected they want a Starburst. so this is calculating the cost of order
         // do the same thing as you did in snickers, but with starburst. so the comments from 742-753. apply the same way but with starbursts
         
         // write code
     }
     else if (candy_choice == "3")
     {
-        // if we're in here, the customer selected they want a KitKat. assign "price_of_candy" a value of 4.0. do this below this comment
+        // if we're in here, the customer selected they want a KitKat. do this below this comment
         // do the same thing as you did in snickers, but with kitkats.
 
         
