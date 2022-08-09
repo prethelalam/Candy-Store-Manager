@@ -4,6 +4,7 @@
 //#include <vector>
 
 //spaces after are where you input your code
+//snickers, starbursts, kitkats
 
 
 using namespace std;
@@ -209,22 +210,7 @@ double GetCostOfStorage() {
 // and it should update the customer.txt file. You'll need to add parameters to the function.
 
 void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Money, bool IsLactoseIntolerant) {
-    cout << "Do you want to update the customers information? If yes, enter y.\n";
-    char option;
-    cin >> option;
-    if (option == 'y')
-    {
-        cout << "\n";
-        cout << "Customer information has been updated.\n";
-        cout << "\n";
         StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
-    }
-    else
-    {
-        cout << "\n";
-        cout << "Customer information will not be updated:\n";
-        cout << "\n";
-    }
     return;
 }
 /* ------------------------------------------- */
@@ -259,20 +245,20 @@ void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Mon
 // To generalize, the normal_inventory.txt file should look like this:
 
 // File start (this should not be in the file, only including this to make things clear):
-// <kit kats amount>
 // <snickers amount>
+// <kit kats amount>
 // <starbursts amount>
 // File end (this should not be in the file, only including this to make things clear):
 
 // PLEASE CHANGE THIS!!
-void CreateNormalInventory (int Kitkats, int Snickers, int StarBursts) {
+void CreateNormalInventory (int Snickers, int StarBursts, int Kitkats) {
     fstream Normal;
     Normal.open("Normal_Inventory.txt", ios::out);
     if (Normal.is_open())
     {
-        Normal << Kitkats << endl;
         Normal << Snickers << endl;
         Normal << StarBursts << endl;
+        Normal << Kitkats << endl;
     }
     Normal.close();
     return;
@@ -308,7 +294,7 @@ void CreateDietInventory (int Lollipops, int Butterscotch, int AlmondJoys) {
 }
 
 // Reset all the quantities of candies back in the NORMAL inventory back to 20
-void RestockNormalInventory(int RestockKitKats, int RestockSnickers, int RestockStarBursts) {
+void RestockNormalInventory(int RestockSnickers, int RestockStarBursts, int  RestockKitKats) {
     int KitKats = 12, Snickers = 13, StarBursts = 14;
     if (KitKats <= 5)
     {
@@ -317,15 +303,15 @@ void RestockNormalInventory(int RestockKitKats, int RestockSnickers, int Restock
             if (StarBursts <= 5)
             {
         cout << "\n";
-        cout << "Normal inventory has been restocked.\n";
-        CreateNormalInventory(RestockKitKats, RestockSnickers, RestockStarBursts);
+        cout << "Normal inventory has been restocked.\n"; //delete
+        CreateNormalInventory(RestockSnickers, RestockStarBursts, RestockKitKats);
         cout << "\n";
     }
         }
     }
     else
     {
-        cout << "Normal Inventory will not be restocked\n";
+        cout << "Normal Inventory will not be restocked\n"; //delete
         cout << "\n";
     }
     return;
@@ -341,7 +327,7 @@ void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int Res
             if (AlmondJoys <= 5)
             {
         cout << "\n";
-        cout << "Diet inventory has been restocked.\n";
+        cout << "Diet inventory has been restocked.\n"; //delete
         CreateNormalInventory(RestockLollipops, RestockButterscotch, RestockAlmondJoys);
         cout << "\n";
     }
@@ -349,7 +335,7 @@ void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int Res
     }
     else
     {
-        cout << "Diet Inventory will not be restocked\n";
+        cout << "Diet Inventory will not be restocked\n"; //delete
         cout << "\n";
     }
     return;
@@ -358,42 +344,15 @@ void RestockDietInventory(int RestockLollipops, int RestockButterscotch, int Res
 // Update the quantities of the candies in the Normal inventory.
 //this is used when a customer buys some candy. so if a customer buys 5 snickers. then that means inventory will have 5 few snickers (15), so you have to update it with the new quanities for it to be 15.
 // HINT: You'll have to add parameters.
-void UpdateNormalInventory(int UpdateAMTKitKats, int UpdateAMTSnickers, int UpdateAMTStarBursts) { //update
-    cout << "Would you like to update your normal inventory? If yes, enter y. If no, enter n.\n";
-    char option;
-    cin >> option;
-    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
-        cout << "\n";
-        cout << "Normal inventory has been updated.\n";
-        CreateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
-        cout << "\n";
-    }
-    else{
-        cout << "\n";
-        cout << "Normal Inventory will not be updated\n";
-        cout << "\n";
-    }
+void UpdateNormalInventory(int UpdateAMTSnickers, int UpdateAMTStarBursts, int  UpdateAMTKitKats) { 
+    CreateNormalInventory(UpdateAMTSnickers, UpdateAMTStarBursts, UpdateAMTKitKats);
     return;
 }
 
 // Update the quantities of the candies in the Diet inventory.
 // HINT: You'll have to add parameters.
-void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int UpdateAMTAlmondJoys) { //update
-    cout << "Would you like to update your Diet inventory? If yes, enter y. If no, enter n.\n";
-    char option;
-    cin >> option;
-    if (option == 'y'){ //i think i need a if statment to check wheather the inventory is less than 20 or not
-        cout << "\n";
-        cout << "Diet inventory has been updated.\n";
-        CreateNormalInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
-        cout << "\n";
-    }
-    else
-    {
-        cout << "\n";
-        cout << "Diet Inventory will not be updated\n";
-        cout << "\n";
-    }
+void UpdateDietInventory(int UpdateAMTLollipops, int UpdateAMTButterscotch, int UpdateAMTAlmondJoys) { 
+    CreateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
     return;
 }
 /* ------------------------------------------- */
@@ -647,24 +606,29 @@ void HandleNewCustomerInformation() {
 
     // Ask the customer if they are lactose intolerant using the prompt described above. If the customer answers "y", assign the "is_lactose_intolerant"
     // variable a value of true. Otherwise, assign the "is_lactose_intolerant" variable a value of false.
+
     char decision; //stuggling with this too (here to 661)
     cout << "Are you lactose intolerant? (y/n):\n";
     cin >> decision;
     cout << "\n"; // added for formatting
     if (decision == 'y')
         {
-            cout << "true" << endl;
+            is_lactose_intolerant = true;
         }
         else
         {
-            cout << "false" << endl;
+            is_lactose_intolerant = false;
         } 
+    
+    //is_lactose_intolerant = (decision == 'y'); //== is basically like a boolean expression (another way of writing the if statement above)
 
     // Initialize a double variable named "money_spent_by_customer" with a value of 0.0 . This is to represent that the customer has not spent any money
     // on candy yet, since they are a new customer.
     double money_spent_by_customer = 0.0;
+
     // Finally, call StoreCustomerInfo below this line with all the variables you created in the lines above.
     StoreCustomerInfo(customer_name, customer_sex, customer_weight, customer_age, money_spent_by_customer, is_lactose_intolerant);
+
     // Print out to the customer the sucess message described above. print it out below this line.
     cout << "Thank you for joining WorryFree Candy! We have recorded your information.\n";
 }
@@ -677,16 +641,16 @@ void HandleNewCustomerInformation() {
 bool ShouldDisplayNormalMenu() {
     // initialize a double variable called "money_spent_by_customer" with the value of a call to GetMoneySpentByCustomer
     double money_spent_by_customer = GetMoneySpentByCustomer();
+
     // write an if statement that checks if "money_spent_by_customer" is less than 25. If it is less than 25, return true. Otherwise, return false.
     if (money_spent_by_customer < 25)
     {
-        cout << "True"; //is this what you meant by it. after this is it supposed to display the normal menu? Im thinking no?
+        return true;
     }
     else
     {
-        cout << "False"; //is this what you meant by it. after this is it supposed to display the diet menu? Im thinking no?
+        return false;
     }
-    return money_spent_by_customer; //false; // <- YOU NEED TO CHANGE THIS TO RETURN TRUE OR FALSE BASED ON THE CUSTOMER AMOUNT!!!
 }
 
 // This function (DisplayNormalMenu) is going to display the normal menu for candies. There are 3 items on the normal menu:
@@ -697,6 +661,7 @@ bool ShouldDisplayNormalMenu() {
 // Then print out: "2. Starburst ($3 each)"
 // Then print out: "3. KitKats ($4 each)"
 // YOU ARE **NOT** GOING TO HANDLE ANY INPUT IN THIS FUNCTION. THE INPUT HANDLING WILL BE DONE IN THE "HandleNormalMenuCandyChoice" FUNCTION
+
 void DisplayNormalMenu() {
     // print out the initial prompt
     cout << "For you, here is our finest selection of normal candies! Please select the number associated with the candy you want to buy. \n";
@@ -726,9 +691,16 @@ void DisplayNormalMenu() {
 
 void HandleNormalMenuCandyChoice() {
     // prompt the customer for which candy they want and store their answer in a string variable named "candy_choice"
-    string candy_choice = "Which candy would you like (1, 2, 3)?:\n";// not sure what you mean by string candy_choice = "CHANGE THIS!!!"; is this what you meant?
-    cout << candy_choice;
+    string candy_choice;
+
+    cout << "Which candy would you like (1, 2, 3)?:\n";
     cin >> candy_choice;
+
+    if (candy_choice != "1" && candy_choice != "2" && candy_choice != "3") //|| is or, && is and
+    {
+        cout << "unhandled input. exiting.\n";
+        return;
+    }
 
     // prompt the customer for the amount of candies that they want, and store their answer in an integer variable named "amount_of_candies"
     int amount_of_candies;
@@ -736,7 +708,7 @@ void HandleNormalMenuCandyChoice() {
     cin >> amount_of_candies;
 
     // initialize a double variable named "price_of_candy" with a value of -1.0
-    double price_of_candy = -1.0;
+    double price_of_candy = -1.0; //this is like the werid thing from the data types worksheet (random storage of numbers with data types) 
 
     // i've written this if statement for you that checks their candy choice. you'll write the corresponding code for each of these if statements
     if (candy_choice == "1")
@@ -753,13 +725,7 @@ void HandleNormalMenuCandyChoice() {
     {
         // if we're in here, the customer selected they want a KitKat. assign "price_of_candy" a value of 4.0. do this below this comment
         price_of_candy = 4.0;
-
-    } else { //shouldnt this else statement be right after line 721, after they select their candy choice?)
-
-        // if we're in here, the customer input something that wasn't a 1, a 2, or a 3. we're not going to handle this, so we're just going to exit.
-        cout << "unhandled input. exiting.\n";
-        return;
-    }
+    } 
 
     // now we're going to check our inventory based off the candy they selected. for example, if they selected snickers, we need to make sure we
     // have enough snickers to sell the customer
@@ -773,43 +739,45 @@ void HandleNormalMenuCandyChoice() {
         // otherwise, calculate the cost of the order, update the customers info with the new money spent on candy by taking what they previously spent
         // and add the cost of the current order, and then update the inventory.
 
-        //so am i supposed to be adding stuff here?
         if (num_snickers_in_inventory > amount_of_candies)
         {
-            int total = price_of_candy * amount_of_candies; //also shouldnt i have this = to something?
+            int UpdatedSnickers = num_snickers_in_inventory - amount_of_candies;
+            //lets say you didn't check inventory
+            //fix order obvi
+        UpdateNormalInventory(UpdatedSnickers, GetNumStarbursts(), GetNumKitkats());
+        //also update how much money customer has spent on candy
+
+        int total = price_of_candy * amount_of_candies; 
+
+        double UpdatedMoneyInAccount = GetMoneySpentByCustomer() + total;
+        UpdateCustomerInfo(GetCustomerName(), GetCustomerSex(), GetCustomerWeight(), GetCustomerAge(), UpdatedMoneyInAccount, IsLactoseIntolerant());
+
+            
         }
         else
         {
             cout << "Sorry, we don't have enough candy!\n";
         }
-
     }
     else if (candy_choice == "2")
     {
         // if we're in here, the customer selected they want a Starburst. assign "price_of_candy" a value of 3.0. so this is calculating the cost of order
-        price_of_candy = 3.0;
-
-        // do the same thing as you did in snickers, but with starburst. so the comments from 614 -617. apply the same way but with starbursts
         
-        // confused cause i think the lines numbers are diff. not sure what you want me to do here tbh
+
+        // do the same thing as you did in snickers, but with starburst. so the comments from 742-753. apply the same way but with starbursts
+        
+        // write code
     }
     else if (candy_choice == "3")
     {
         // if we're in here, the customer selected they want a KitKat. assign "price_of_candy" a value of 4.0. do this below this comment
         // do the same thing as you did in snickers, but with kitkats.
 
-        price_of_candy = 4.0;
+        
 
-        // confused cause i think the lines numbers are diff. not sure what you want me to do here tbh
 
-    } else {
-
-        // if we're in here, the customer input something that wasn't a 1, a 2, or a 3. we're not going to handle this, so we're just going to exit.
-        cout << "unhandled input. exiting.\n";
-        return;
-    }
+    } 
 }
-//from 730 - 801 im kinda confused as to whats going on
 
 
 
@@ -843,9 +811,10 @@ void DisplayDietMenu() {
 // If you don't have enough candy, then you'll prompt: "Sorry, we don't have enough candy!"
 // Otherwise if you DO have enough candy, then you'll calculate how much the cost will be by using the (price per candy) * (amount of candies)
 // Finally, you'll prompt to the customer: "Thanks! Your total was: <total>. Your information has been updated!"
-void HandleDietMenuCandyChoice() {
+
+void HandleDietMenuCandyChoice() { //follow what you did for normal. but finish normal first
     // prompt the customer for which candy they want and store their answer in a string variable named "candy_choice"
-    string candy_choice = "CHANGE THIS!!!";
+    string candy_choice;
 
     // prompt the customer for the amount of candies that they want, and store their answer in an integer variable named "amount_of_candies"
 
@@ -914,17 +883,23 @@ void StartCandyManager() {
     // variable named "customer_name"
     string customer_name;
     cout << "Hello! What is your name?\n";
-    cin >> customer_name; //this doesn't print the full name
+    getline(cin, customer_name); // >> customer_name; //this doesn't print the full name
 
     // Now that we have the customer's name, let's go ahead and greet them by using our GreetCustomer function.
     GreetCustomer(customer_name);
 
     // Now, let's go ahead and ask if they're a returning customer using our AskIfReturningCustomer function. Make sure
     // to get the customer's input here.
+
     char answer = 'y';
     AskIfReturningCustomer();
     cin >> answer;
     cout << "\n";
+
+    // Now that we know whether they are a returning customer or not, we have display the correct respective message
+    // if they are a returning customer, then say welcome back using our SayWelcomeBack function
+    // otherwise, if they are a new customer, then welcome a new customer using our WelcomeNewCustomer function AND also
+    // call our HandleNewCustomerInformation function to record their information for the first time
 
     if (answer == 'y')
     {
@@ -935,12 +910,7 @@ void StartCandyManager() {
     WelcomeNewCustomer(customer_name);
     HandleNewCustomerInformation();
     }
-    
-    // Now that we know whether they are a returning customer or not, we have display the correct respective message
-    // if they are a returning customer, then say welcome back using our SayWelcomeBack function
-    // otherwise, if they are a new customer, then welcome a new customer using our WelcomeNewCustomer function AND also
-    // call our HandleNewCustomerInformation function to record their information for the first time
-    
+
     // Now we want to display either the normal menu or the diet menu, based on the amount the customer has spent so
     // far. Luckily, we've already implemented this logic in the ShouldDisplayNormalMenu function. Use the
     // ShouldDisplayNormalMenu function in an if statement - if ShouldDisplayNormalMenu returns true, then lets
@@ -949,18 +919,21 @@ void StartCandyManager() {
     // display the diet menu using the DisplayDietMenu function and then handle the input using the 
     // HandleDietMenuCandyChoice function
     
+        //write code here
     
     // After all that is done, say thank you to the customer!
+
+        //write code here
 }
 
 int main() {
-    /*
+    
     //Part 1
     StoreCustomerInfo("Prethel Alam", 'M', 153.23, 23, 100.23, false);
 
     //Part 3
     UpdateCustomerInfo("Zeus Alam", 'M', 20.57, 3, 89.43, true);
-
+/*
     //Part 2
     string name = GetCustomerName();
     // so here youre calling the function GetCustomerName. then this jumps to line 44 and does all that good stuff. then on line 48, youre checking to see that the file is open, then it reads the 3 line down on the text file. then other good stuff happens. so the name on the text file will be stored in Name. then it reads line 58 which is return Name (which is storing the name in the text file). what happens next is the program jumps back to line 391, where GetCustomerName function is called. it basically substitues that function call with the value of Name (which is the name in the text file). then that value is stored in a variable called name (lowercased... keep that in mind). then on line 392, you are printing that name variable (which is now stored with the name from the text file)
@@ -998,8 +971,8 @@ int main() {
     int Lollipops = 12, Butterscotch = 13, AlmondJoys = 14;
     CreateDietInventory(Lollipops, Butterscotch, AlmondJoys);
 
-    int KitKats = 12, Snickers = 13, StarBursts = 14;
-    CreateNormalInventory(KitKats, Snickers, StarBursts);
+    int Snickers = 13, KitKats = 12, StarBursts = 14;
+    CreateNormalInventory(Snickers, StarBursts, KitKats);
 
     int RestockKitKats = 20, RestockSnickers = 20, RestockStarBursts = 20;
     RestockNormalInventory(RestockKitKats, RestockSnickers, RestockStarBursts);
@@ -1007,11 +980,11 @@ int main() {
     int RestockLollipops = 20, RestockButterscotch = 20, RestockAlmondJoys = 20;
     RestockDietInventory(RestockLollipops, RestockButterscotch, RestockStarBursts);
 
-    //int UpdateAMTKitKats = 30, UpdateAMTSnickers = 30, UpdateAMTStarBursts = 30;
-    //UpdateNormalInventory(UpdateAMTKitKats, UpdateAMTSnickers, UpdateAMTStarBursts);
+    int NewAMTSnickers = GetNumSnickers(), NewAMTKitKats = GetNumKitkats(), NewAMTStarbursts = GetNumStarbursts();
+    UpdateNormalInventory(NewAMTSnickers, NewAMTKitKats, NewAMTStarbursts);
 
-    //int UpdateAMTLollipops = 30, UpdateAMTButterscotch = 30, UpdateAMTAlmondJoys = 30;
-    //UpdateDietInventory(UpdateAMTLollipops, UpdateAMTButterscotch, UpdateAMTAlmondJoys);
+    int NewAMTLollipops = GetNumLollipops(), NewAMTButterscotch = GetNumButterscotch(), NewAMTAlmondJoys = GetNumAlmondJoys();
+    UpdateDietInventory(NewAMTLollipops, NewAMTButterscotch, NewAMTAlmondJoys);
 
    /* //Part 4b
     int snickers = GetNumSnickers();
@@ -1055,13 +1028,16 @@ int main() {
     
     //ShouldDisplayNormalMenu();
 
-    //DisplayNormalMenu();
+    DisplayNormalMenu();
+*/
 
-    //HandleNormalMenuCandyChoice();
+    HandleNewCustomerInformation();
+
+    HandleNormalMenuCandyChoice();
 
     //Part 6
-    StartCandyManager();
-    */
+    //StartCandyManager();
+
 
 }
 

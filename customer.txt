@@ -1,8 +1,8 @@
 Inside Store Customer Info.: 
 
-Zeus Alam
-M
-20.57
-3
-89.43
-True
+cienna alam
+F
+100.2
+25
+35
+False
