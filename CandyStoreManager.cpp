@@ -186,7 +186,7 @@ double GetCostOfStorage() {
 
 /* Part 3 - Update Customer Info in the file */
 void UpdateCustomerInfo(string Name, char Sex, float Weight, int Age, double Money, bool IsLactoseIntolerant) {
-        StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
+    StoreCustomerInfo(Name, Sex, Weight, Age, Money, IsLactoseIntolerant);
     return;
 }
 
